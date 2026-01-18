@@ -1,11 +1,12 @@
 import Button from '../components/Button/index.tsx';
+import Container from '../components/Container';
 import logo from '../assets/static/images.png';
 import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
 
 const Navigation = () => {
   return (
     <nav className="w-full bg-white sticky top-0 z-50 border-b border-gray-200 transition-shadow duration-300 hover:shadow-md">
-      <div className="max-w-7xl mx-auto px-4">
+      <Container>
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -50,10 +51,10 @@ const Navigation = () => {
             </button>
 
             {/* Contact Button */}
-            <Button color="primary">LIÊN HỆ NGAY</Button>
+            <Button color="primary" >LIÊN HỆ NGAY</Button>
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 };
