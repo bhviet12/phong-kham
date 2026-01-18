@@ -10,10 +10,10 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
-              <img src={logo} alt="Logo" className='w-9 p-1 mr-2' />
+              <img src={logo} alt="Logo" className='w-14 p-1 mr-3' />
               <div>
-                <h1 className="text-xl font-bold text-blue-900">Medical</h1>
-                <p className="text-xs text-gray-600">Mona Media</p>
+                <h1 className="text-2xl font-bold text-blue-900">Medical</h1>
+                <p className="text-sm text-gray-600">Mona Media</p>
               </div>
             </a>
           </div>
@@ -21,12 +21,12 @@ const Navigation = () => {
           {/* Navigation Links */}
           <div className="flex-1 flex justify-center">
             <ul className="flex gap-6 items-center">
-              <li><a href="/" className="text-gray-700 hover:text-blue-600 font-medium">TRANG CHỦ</a></li>
-              <li><a href="/about" className="text-gray-700 hover:text-blue-600 font-medium">GIỚI THIỆU</a></li>
-              <li><a href="/products" className="text-gray-700 hover:text-blue-600 font-medium">SẢN PHẨM +</a></li>
-              <li><a href="/services" className="text-gray-700 hover:text-blue-600 font-medium">DỊCH VỤ +</a></li>
-              <li><a href="/news" className="text-gray-700 hover:text-blue-600 font-medium">TIN TỨC</a></li>
-              <li><a href="/contact" className="text-gray-700 hover:text-blue-600 font-medium">LIÊN HỆ</a></li>
+              <li><a href="/" className="text-sm text-gray-700 hover:text-blue-600 font-medium">TRANG CHỦ</a></li>
+              <li><a href="/about" className="text-sm text-gray-700 hover:text-blue-600 font-medium">GIỚI THIỆU</a></li>
+              <li><a href="/products" className="text-sm text-gray-700 hover:text-blue-600 font-medium">SẢN PHẨM +</a></li>
+              <li><a href="/services" className="text-sm text-gray-700 hover:text-blue-600 font-medium">DỊCH VỤ +</a></li>
+              <li><a href="/news" className="text-sm text-gray-700 hover:text-blue-600 font-medium">TIN TỨC</a></li>
+              <li><a href="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">LIÊN HỆ</a></li>
             </ul>
           </div>
 
