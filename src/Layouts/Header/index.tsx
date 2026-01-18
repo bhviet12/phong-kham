@@ -5,12 +5,12 @@ import "./index.css"
 
 const Header = () => {
   return (
-    <header className="w-full bg-blue-600 text-white">
-      <div className="grid grid-cols-2 gap-4 px-6 py-3">
+    <header className="w-full bg-blue-600 text-white font-bold">
+      <div className="grid grid-cols-2 gap-4 px-4 py-3 max-w-7xl mx-auto ">
         {/* Left side - Contact info */}
         <div className="flex items-center gap-6 col-span-2 lg:col-span-1">
           {/* Phone */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <span className="icon">
               <FaPhoneAlt />
             </span>
@@ -18,7 +18,7 @@ const Header = () => {
           </div>
 
           {/* Email */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <span className="icon">
               <MdOutlineEmail />
             </span>
@@ -26,7 +26,7 @@ const Header = () => {
           </div>
 
           {/* Location */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <span className="icon">
               <FaLocationDot />
             </span>
@@ -36,7 +36,7 @@ const Header = () => {
 
         {/* Right side - Social icons */}
         <div className="flex justify-end items-center col-span-2 lg:col-span-1">
-          <span className="text-sm mr-2">Mạng xã hộ :</span>
+          <h2 className="text-sm mr-2">Mạng xã hộ :</h2>
           <a href="#" className="icon-social">
             <FaFacebook />
           </a>

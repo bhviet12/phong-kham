@@ -18,7 +18,7 @@
 /* Text wrapper - align với icon */
 .wrapper {
   margin: 0; /* Reset margin default */
-  padding: 0 8px; /* Padding trái-phải thay vì padding đều */
+  padding: 0 5px; /* Padding trái-phải thay vì padding đều */
   font-size: 14px;
   line-height: 1.4;
   white-space: nowrap; /* Không wrap text */
