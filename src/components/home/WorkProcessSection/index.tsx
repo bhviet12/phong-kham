@@ -78,7 +78,7 @@ const WorkProcessSection = () => {
                 </div>
                 {/* Step circle - absolute top-right */}
                 <div
-                  className={`absolute top-0 right-0 w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-xs ${
+                  className={`absolute top-6 right-0 w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-xs ${
                     step.color === 'green' ? 'bg-green-500' : 'bg-blue-500'
                   }`}
                 >

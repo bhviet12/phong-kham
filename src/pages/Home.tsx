@@ -11,6 +11,8 @@ const HealthcareSection = lazy(() => import('../components/home/HealthcareSectio
 const DoctorsSection = lazy(() => import('../components/home/DoctorsSection'))
 const WorkProcessSection = lazy(() => import('../components/home/WorkProcessSection'))
 const FAQSection = lazy(() => import('../components/home/FAQSection'))
+const ReviewsSection = lazy(() => import('../components/home/ReviewsSection'))
+const NewsSection = lazy(() => import('../components/home/NewsSection'))
 
 const LoadingFallback = () => (
   <div className="h-64 flex items-center justify-center">
@@ -51,6 +53,12 @@ const Home = () => {
       </Suspense>
       <Suspense fallback={<LoadingFallback />}>
         <FAQSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <ReviewsSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
+        <NewsSection />
       </Suspense>
     </MainLayout>
   )
