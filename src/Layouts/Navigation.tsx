@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Button from '../components/Button/index.tsx';
 import Container from '../components/Container';
 import logo from '../assets/static/images.png';
@@ -10,24 +11,24 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src={logo} alt="Logo" className='w-14 p-1 mr-3' />
               <div>
                 <h1 className="text-2xl font-bold text-blue-900">Medical</h1>
                 <p className="text-sm text-gray-600">Mona Media</p>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Navigation Links */}
           <div className="flex-1 flex justify-center">
             <ul className="flex gap-6 items-center">
-              <li><a href="/" className="text-sm text-gray-700 hover:text-blue-600 font-medium">TRANG CHỦ</a></li>
-              <li><a href="/about" className="text-sm text-gray-700 hover:text-blue-600 font-medium">GIỚI THIỆU</a></li>
+              <li><Link to="/" className="text-sm text-gray-700 hover:text-blue-600 font-medium">TRANG CHỦ</Link></li>
+              <li><Link to="/about" className="text-sm text-gray-700 hover:text-blue-600 font-medium">GIỚI THIỆU</Link></li>
               <li><a href="/products" className="text-sm text-gray-700 hover:text-blue-600 font-medium">SẢN PHẨM +</a></li>
-              <li><a href="/services" className="text-sm text-gray-700 hover:text-blue-600 font-medium">DỊCH VỤ +</a></li>
+              <li><Link to="/services" className="text-sm text-gray-700 hover:text-blue-600 font-medium">DỊCH VỤ +</Link></li>
               <li><a href="/news" className="text-sm text-gray-700 hover:text-blue-600 font-medium">TIN TỨC</a></li>
-              <li><a href="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">LIÊN HỆ</a></li>
+              <li><Link to="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">LIÊN HỆ</Link></li>
             </ul>
           </div>
 
@@ -51,7 +52,9 @@ const Navigation = () => {
             </button>
 
             {/* Contact Button */}
-            <Button color="primary" >LIÊN HỆ NGAY</Button>
+            <Link to="/contact">
+              <Button color="primary" size="large">LIÊN HỆ NGAY</Button>
+            </Link>
           </div>
         </div>
       </Container>
