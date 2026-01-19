@@ -68,12 +68,6 @@ const ReviewsSection = () => {
     return () => clearInterval(interval)
   }, [totalSlides])
 
-  // Lấy reviews cho slide hiện tại
-  const getCurrentSlideReviews = () => {
-    const start = activeSlide * reviewsPerSlide
-    return reviews.slice(start, start + reviewsPerSlide)
-  }
-
   const handleDotClick = (index: number) => {
     setActiveSlide(index)
   }
