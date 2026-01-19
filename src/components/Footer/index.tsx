@@ -86,7 +86,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                <a href="tel:+840313728397" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+                <a href="tel:+8498765423456" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
                   (+84) 98765423456
                 </a>
               </div>
@@ -147,7 +147,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                  <a href="tel:+842838123456" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+                  <a href="tel:+84567895432" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
                     (+84) 567895432
                   </a>
                 </div>
@@ -166,7 +166,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                  <a href="tel:+842352345678" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+                  <a href="tel:+8423456789345" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
                     (+84) 23456789345
                   </a>
                 </div>
