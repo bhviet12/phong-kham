@@ -1,6 +1,11 @@
 import { useSEO } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import Container from '../components/Container'
+import PageHeader from '../components/PageHeader'
+import AboutIntroSection from '../components/about/AboutIntroSection'
+import ExperienceServicesSection from '../components/about/ExperienceServicesSection'
+import DoctorsSection from '../components/about/DoctorsSection'
+import AchievementsSection from '../components/about/AchievementsSection'
+import ReviewsSection from '../components/home/ReviewsSection'
 
 const About = () => {
   useSEO({
@@ -12,16 +17,14 @@ const About = () => {
 
   return (
     <MainLayout>
-      <section className="py-16">
-        <Container>
-          <h1 className="text-4xl font-bold text-blue-900 mb-8">Giới Thiệu</h1>
-          <div className="prose max-w-none">
-            <p className="text-gray-600 text-lg">
-              Nội dung trang giới thiệu sẽ được thêm vào đây...
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageHeader pageKey="about" />
+
+      <AboutIntroSection />
+      <ExperienceServicesSection />
+      <DoctorsSection />
+      <AchievementsSection />
+      <ReviewsSection />
+
     </MainLayout>
   )
 }

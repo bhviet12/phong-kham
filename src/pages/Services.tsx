@@ -1,6 +1,7 @@
 import { useSEO } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
 import Container from '../components/Container'
+import PageHeader from '../components/PageHeader'
 
 const Services = () => {
   useSEO({
@@ -12,9 +13,10 @@ const Services = () => {
 
   return (
     <MainLayout>
+      <PageHeader pageKey="services" />
+
       <section className="py-16">
         <Container>
-          <h1 className="text-4xl font-bold text-blue-900 mb-8">Dịch Vụ</h1>
           <div className="prose max-w-none">
             <p className="text-gray-600 text-lg">
               Danh sách dịch vụ sẽ được thêm vào đây...
