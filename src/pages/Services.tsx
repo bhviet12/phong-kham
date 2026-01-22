@@ -1,7 +1,17 @@
+import { Suspense, lazy } from 'react'
 import { useSEO } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import Container from '../components/Container'
 import PageHeader from '../components/PageHeader'
+
+const ServicesSection = lazy(() => import('../components/services/ServicesSection'))
+
+const LoadingFallback = (
+  <div className="py-16 lg:py-24">
+    <div className="flex items-center justify-center min-h-[400px]">
+      <div className="text-gray-500">Đang tải...</div>
+    </div>
+  </div>
+)
 
 const Services = () => {
   useSEO({
@@ -15,15 +25,9 @@ const Services = () => {
     <MainLayout>
       <PageHeader pageKey="services" />
 
-      <section className="py-16">
-        <Container>
-          <div className="prose max-w-none">
-            <p className="text-gray-600 text-lg">
-              Danh sách dịch vụ sẽ được thêm vào đây...
-            </p>
-          </div>
-        </Container>
-      </section>
+      <Suspense fallback={LoadingFallback}>
+        <ServicesSection />
+      </Suspense>
     </MainLayout>
   )
 }
