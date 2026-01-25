@@ -9,16 +9,9 @@ const Container: FC<ContainerProps> = ({
   children, 
   className = ""
 }) => {
-  const customStyle = {
-    maxWidth: "1526px",
-    padding: "0px 16px",
-    margin: "0px 149.5px",
-  }
-
   return (
     <div 
-      className={className.trim()}
-      style={customStyle}
+      className={`max-w-[1526px] mx-auto px-4 sm:px-6 md:px-8 lg:px-[149.5px] ${className.trim()}`}
     >
       {children}
     </div>

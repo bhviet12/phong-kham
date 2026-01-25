@@ -53,40 +53,40 @@ const Footer = () => {
     <footer className="bg-slate-900 text-white relative overflow-hidden">
       <Container>
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12 lg:py-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 py-8 sm:py-12 lg:py-16 relative z-10">
           {/* Column 1: Brand and Contact Info */}
           <div className="space-y-4">
             {/* Logo */}
             <Link to="/" className="flex items-center mb-4">
-              <img src={logo} alt="Logo" className="w-12 p-1 mr-3" />
+              <img src={logo} alt="Logo" className="w-10 sm:w-12 p-1 mr-2 sm:mr-3" />
               <div>
-                <h3 className="text-xl font-bold text-white">Medical</h3>
-                <p className="text-sm text-green-500">Mona Media</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Medical</h3>
+                <p className="text-xs sm:text-sm text-green-500">Mona Media</p>
               </div>
             </Link>
 
             {/* Description */}
-            <p className="text-sm text-gray-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
               Subscribe to out newsletter today to receive latest news administrate cost effective for tactical data.
             </p>
 
             {/* Contact Details */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3">
-                <FaLocationDot className="text-green-500 mt-1 flex-shrink-0" />
-                <p className="text-sm text-gray-300">
+            <div className="space-y-2 sm:space-y-3 pt-2">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <FaLocationDot className="text-green-500 mt-1 flex-shrink-0 text-xs sm:text-sm" />
+                <p className="text-xs sm:text-sm text-gray-300">
                   90 street, Ward 1, District 1, City 1
                 </p>
               </div>
-              <div className="flex items-center gap-3">
-                <FaEnvelope className="text-green-500 flex-shrink-0" />
-                <a href="mailto:info@themona.global" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <FaEnvelope className="text-green-500 flex-shrink-0 text-xs sm:text-sm" />
+                <a href="mailto:info@themona.global" className="text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors break-all">
                   info@themona.global
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                <a href="tel:+8498765423456" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <FaPhoneAlt className="text-green-500 flex-shrink-0 text-xs sm:text-sm" />
+                <a href="tel:+8498765423456" className="text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors">
                   (+84) 98765423456
                 </a>
               </div>
@@ -95,7 +95,7 @@ const Footer = () => {
 
           {/* Column 2: Liên Kết */}
           <div>
-            <h4 className="text-lg font-bold mb-4 pb-2 border-b-2 border-green-500 inline-block">
+            <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 pb-2 border-b-2 border-green-500 inline-block">
               Liên Kết
             </h4>
             <ul className="space-y-2 mt-4">
@@ -103,7 +103,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to="#"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-green-500 transition-colors group"
+                    className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors group"
                   >
                     <FaChevronRight className="text-gray-500 text-xs group-hover:text-green-500 transition-colors" />
                     <span>{link}</span>
@@ -115,7 +115,7 @@ const Footer = () => {
 
           {/* Column 3: Dịch Vụ Phổ Biến */}
           <div>
-            <h4 className="text-lg font-bold mb-4 pb-2 border-b-2 border-green-500 inline-block">
+            <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 pb-2 border-b-2 border-green-500 inline-block">
               Dịch Vụ Phổ Biến
             </h4>
             <ul className="space-y-2 mt-4">
@@ -123,7 +123,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to="#"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-green-500 transition-colors group"
+                    className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors group"
                   >
                     <FaChevronRight className="text-gray-500 text-xs group-hover:text-green-500 transition-colors" />
                     <span>{service}</span>
@@ -134,20 +134,20 @@ const Footer = () => {
           </div>
 
           {/* Column 4: Contact Addresses */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Miền Nam */}
             <div>
-              <h4 className="text-lg font-bold mb-3">Miền Nam:</h4>
+              <h4 className="text-base sm:text-lg font-bold mb-2 sm:mb-3">Miền Nam:</h4>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
-                  <FaLocationDot className="text-green-500 mt-1 flex-shrink-0" />
-                  <p className="text-sm text-gray-300">
+                  <FaLocationDot className="text-green-500 mt-1 flex-shrink-0 text-xs sm:text-sm" />
+                  <p className="text-xs sm:text-sm text-gray-300">
                     789 street, Ward 1, District 1, City 1
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                  <a href="tel:+84567895432" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+                  <FaPhoneAlt className="text-green-500 flex-shrink-0 text-xs sm:text-sm" />
+                  <a href="tel:+84567895432" className="text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors">
                     (+84) 567895432
                   </a>
                 </div>
@@ -156,17 +156,17 @@ const Footer = () => {
 
             {/* Miền Trung */}
             <div>
-              <h4 className="text-lg font-bold mb-3">Miền Trung:</h4>
+              <h4 className="text-base sm:text-lg font-bold mb-2 sm:mb-3">Miền Trung:</h4>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
-                  <FaLocationDot className="text-green-500 mt-1 flex-shrink-0" />
-                  <p className="text-sm text-gray-300">
+                  <FaLocationDot className="text-green-500 mt-1 flex-shrink-0 text-xs sm:text-sm" />
+                  <p className="text-xs sm:text-sm text-gray-300">
                     123 street, Ward 1, District 1, City 1
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaPhoneAlt className="text-green-500 flex-shrink-0" />
-                  <a href="tel:+8423456789345" className="text-sm text-gray-300 hover:text-green-500 transition-colors">
+                  <FaPhoneAlt className="text-green-500 flex-shrink-0 text-xs sm:text-sm" />
+                  <a href="tel:+8423456789345" className="text-xs sm:text-sm text-gray-300 hover:text-green-500 transition-colors">
                     (+84) 23456789345
                   </a>
                 </div>
@@ -179,38 +179,38 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-slate-800 border-t border-slate-700 relative z-10">
         <Container>
-          <div className="flex flex-col md:flex-row justify-between items-center py-4 gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center py-4 gap-4">
             {/* Copyright */}
-            <p className="text-sm text-gray-300 text-center md:text-left">
+            <p className="text-xs sm:text-sm text-gray-300 text-center sm:text-left">
               © Thiết kế và lập trình đội N
             </p>
 
             {/* Social Media Icons */}
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all text-sm sm:text-base"
                 aria-label="Facebook"
               >
                 <FaFacebook />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all text-sm sm:text-base"
                 aria-label="Twitter"
               >
                 <FaTwitter />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all text-sm sm:text-base"
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-green-500 flex items-center justify-center text-gray-300 hover:text-white transition-all text-sm sm:text-base"
                 aria-label="Instagram"
               >
                 <FaInstagram />
@@ -224,7 +224,7 @@ const Footer = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 text-sm sm:text-base"
           aria-label="Scroll to top"
         >
           <FaArrowUp />

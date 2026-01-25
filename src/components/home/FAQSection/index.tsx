@@ -41,45 +41,45 @@ const FAQSection = () => {
       </div>
 
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-start relative z-10">
           {/* Left - FAQ Content */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <FaHeart className="text-green-600" />
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center">
+                <FaHeart className="text-green-600 text-sm sm:text-base" />
               </div>
-              <span className="text-green-500 font-semibold uppercase text-sm tracking-wide">
+              <span className="text-green-500 font-semibold uppercase text-xs sm:text-sm tracking-wide">
                 FAQS
               </span>
             </div>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6 sm:mb-8">
               Giải Đáp Các Thắc Mắc
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-gray-100 rounded-2xl overflow-hidden transition-all duration-300"
+                  className="bg-gray-100 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-200 transition-colors"
+                    className="w-full flex items-center justify-between p-4 sm:p-5 text-left hover:bg-gray-200 transition-colors"
                   >
-                    <span className="text-base lg:text-lg font-semibold text-gray-900 pr-4">
+                    <span className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 pr-3 sm:pr-4">
                       {String(index + 1).padStart(2, '0')}. {faq.question}
                     </span>
                     <div className="flex-shrink-0">
                       {openIndex === index ? (
-                        <FaMinus className="text-green-600 text-lg" />
+                        <FaMinus className="text-green-600 text-base sm:text-lg" />
                       ) : (
-                        <FaPlus className="text-green-600 text-lg" />
+                        <FaPlus className="text-green-600 text-base sm:text-lg" />
                       )}
                     </div>
                   </button>
                   {openIndex === index && (
-                    <div className="px-5 pb-5">
-                      <p className="text-sm lg:text-base text-gray-700 leading-relaxed">
+                    <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                      <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -90,11 +90,11 @@ const FAQSection = () => {
           </div>
 
           {/* Right - Doctor Image */}
-          <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative h-64 sm:h-80 lg:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
               <div className="text-center text-blue-200">
-                <p className="text-lg mb-2">👩‍⚕️</p>
-                <p className="text-sm">Doctor Image</p>
+                <p className="text-2xl sm:text-3xl mb-2">👩‍⚕️</p>
+                <p className="text-xs sm:text-sm">Doctor Image</p>
               </div>
             </div>
           </div>

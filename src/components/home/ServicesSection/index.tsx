@@ -6,49 +6,49 @@ import { FaStethoscope, FaHeartbeat, FaXRay, FaPills, FaUserMd, FaHospital } fro
 const ServicesSection = () => {
   const services = [
     {
-      icon: <FaStethoscope className="text-3xl" />,
+      icon: <FaStethoscope className="text-2xl sm:text-3xl" />,
       title: 'Chuẩn đoán',
       subtitle: '30+ Bác sĩ',
       description: 'Dịch vụ khám sức khỏe tổng quát toàn diện',
     },
     {
-      icon: <FaHeartbeat className="text-3xl" />,
+      icon: <FaHeartbeat className="text-2xl sm:text-3xl" />,
       title: 'Tim mạch',
       subtitle: '20+ Bác sĩ',
       description: 'Chuyên khoa tim mạch với thiết bị hiện đại',
     },
     {
-      icon: <FaXRay className="text-3xl" />,
+      icon: <FaXRay className="text-2xl sm:text-3xl" />,
       title: 'Nội soi',
       subtitle: '18+ Bác sĩ',
       description: 'Chẩn đoán nội soi an toàn và chính xác',
     },
     {
-      icon: <FaPills className="text-3xl" />,
+      icon: <FaPills className="text-2xl sm:text-3xl" />,
       title: 'Dược phẩm',
       subtitle: '15+ Dược sĩ',
       description: 'Cung cấp thuốc chất lượng, đảm bảo an toàn',
     },
     {
-      icon: <FaUserMd className="text-3xl" />,
+      icon: <FaUserMd className="text-2xl sm:text-3xl" />,
       title: 'Tư vấn y tế',
       subtitle: '25+ Bác sĩ',
       description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
     },
     {
-      icon: <FaHospital className="text-3xl" />,
+      icon: <FaHospital className="text-2xl sm:text-3xl" />,
       title: 'Cấp cứu 24/7',
       subtitle: '10+ Bác sĩ',
       description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
     },
     {
-      icon: <FaUserMd className="text-3xl" />,
+      icon: <FaUserMd className="text-2xl sm:text-3xl" />,
       title: 'Tư vấn y tế',
       subtitle: '25+ Bác sĩ',
       description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
     },
     {
-      icon: <FaHospital className="text-3xl" />,
+      icon: <FaHospital className="text-2xl sm:text-3xl" />,
       title: 'Cấp cứu 24/7',
       subtitle: '10+ Bác sĩ',
       description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
@@ -88,26 +88,26 @@ const ServicesSection = () => {
         </div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 relative z-10">
           {services.map((service, index) => (
             <div
               key={index}
-              className="relative bg-white rounded-2xl p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 flex flex-col items-center text-center"
+              className="relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 flex flex-col items-center text-center"
             >
-              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-4 shadow-inner">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-3 sm:mb-4 shadow-inner">
                 {service.icon}
               </div>
-              <h3 className="text-lg lg:text-xl font-bold text-blue-900 mb-1">
+              <h3 className="text-sm sm:text-base lg:text-lg lg:text-xl font-bold text-blue-900 mb-1">
                 {service.title}
               </h3>
               {service.subtitle && (
-                <p className="text-xs text-gray-500 mb-3">{service.subtitle}</p>
+                <p className="text-xs text-gray-500 mb-2 sm:mb-3">{service.subtitle}</p>
               )}
-              <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
+              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3 sm:mb-4 flex-1">
                 {service.description}
               </p>
               <div className="mt-auto pt-2">
-                <Button color="secondary" size="small">
+                <Button color="secondary" size="small" className="text-xs sm:text-sm">
                   XEM THÊM
                 </Button>
               </div>
@@ -135,7 +135,7 @@ const ServicesSection = () => {
         {/* Doctors banner below services */}
         <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white overflow-hidden relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-8 lg:px-16 py-10 lg:py-14">
-            <div className="space-y-4 lg:space-y-6 max-w-xl">
+            <div className="space-y-4 lg:space-y-6 max-w-xl order-2 lg:order-1">
               <p className="text-sm font-semibold text-teal-200 uppercase tracking-[0.25em]">
                 ĐỘI NGŨ BÁC SĨ
               </p>
@@ -156,7 +156,7 @@ const ServicesSection = () => {
                 </Button>
               </div>
             </div>
-            <div className="relative h-64 lg:h-80 flex justify-center lg:justify-end">
+            <div className="relative h-64 lg:h-80 flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="w-56 lg:w-72 h-full bg-gradient-to-t from-blue-400 to-blue-300 rounded-[40px] shadow-2xl flex items-end justify-center overflow-hidden">
                 {/* TODO: replace placeholder with real doctor image */}
                 <span className="mb-6 text-sm text-blue-50/80">Doctor Image</span>

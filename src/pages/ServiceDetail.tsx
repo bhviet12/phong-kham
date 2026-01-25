@@ -10,6 +10,7 @@ import {
   FaTooth, 
   FaSearch,
   FaChevronRight,
+  FaChevronDown,
   FaCheck
 } from 'react-icons/fa'
 
@@ -133,6 +134,7 @@ const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   // Use slug from URL as the source of truth
   const currentSlug = slug || 'nha-khoa'
   
@@ -142,8 +144,11 @@ const ServiceDetail = () => {
     service.title.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  const currentService = filteredServices.find(s => s.slug === currentSlug) || filteredServices[0]
+
   const handleServiceClick = (serviceSlug: string) => {
     navigate(`/service/${serviceSlug}`, { replace: true })
+    setIsDropdownOpen(false) // Close dropdown after selection
   }
 
   useSEO({
@@ -179,12 +184,12 @@ const ServiceDetail = () => {
       </section>
 
       {/* Main Content - 2 Column Layout */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 lg:py-24 bg-white">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
             {/* Left Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
+              <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-6">
                 {/* Search Bar */}
                 <div className="flex gap-2">
                   <input
@@ -192,24 +197,61 @@ const ServiceDetail = () => {
                     placeholder="Nhập từ khóa"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1 rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                    className="flex-1 rounded-lg border border-gray-300 px-3 sm:px-4 py-2 sm:py-2.5 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   />
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg transition-colors">
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-colors">
                     <FaSearch />
                   </button>
                 </div>
 
                 {/* Services List */}
                 <div>
-                  <h3 className="text-lg font-bold text-blue-900 mb-4 pb-2 border-b-2 border-green-500 inline-block">
+                  <h3 className="text-base sm:text-lg font-bold text-blue-900 mb-3 sm:mb-4 pb-2 border-b-2 border-green-500 inline-block">
                     Các dịch vụ
                   </h3>
-                  <div className="space-y-2">
+                  
+                  {/* Mobile Dropdown */}
+                  <div className="lg:hidden">
+                    <button
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="w-full flex items-center justify-between p-3 rounded-lg border border-gray-300 bg-white text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <span className="font-medium text-gray-700">
+                        {currentService?.title || 'Chọn dịch vụ'}
+                      </span>
+                      <FaChevronDown 
+                        className={`text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    {isDropdownOpen && (
+                      <div className="mt-2 border border-gray-200 rounded-lg bg-white shadow-lg max-h-[300px] overflow-y-auto">
+                        {filteredServices.map((item) => (
+                          <button
+                            key={item.slug}
+                            onClick={() => handleServiceClick(item.slug)}
+                            className={`w-full flex items-center justify-between p-3 rounded-lg transition-all text-sm ${
+                              currentSlug === item.slug
+                                ? 'bg-blue-50 text-blue-900 font-semibold'
+                                : 'hover:bg-gray-50 text-gray-700'
+                            }`}
+                          >
+                            <span>{item.title}</span>
+                            {currentSlug === item.slug && (
+                              <FaChevronRight className="text-xs text-blue-600" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Desktop List */}
+                  <div className="hidden lg:block space-y-2 max-h-[400px] overflow-y-auto">
                     {filteredServices.map((item) => (
                       <button
                         key={item.slug}
                         onClick={() => handleServiceClick(item.slug)}
-                        className={`w-full flex items-center justify-between p-3 rounded-lg transition-all ${
+                        className={`w-full flex items-center justify-between p-3 rounded-lg transition-all text-sm ${
                           currentSlug === item.slug
                             ? 'bg-blue-50 text-blue-900 font-semibold'
                             : 'hover:bg-gray-50 text-gray-700'
@@ -225,44 +267,44 @@ const ServiceDetail = () => {
             </div>
 
             {/* Right Content */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-3 space-y-6 sm:space-y-8">
               {/* Service Image */}
-              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-xl bg-gray-200">
+              <div className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl bg-gray-200">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-gray-400">
-                    <div className="text-4xl mb-2">🦷</div>
-                    <p className="text-sm">Service Image</p>
+                    <div className="text-3xl sm:text-4xl mb-2">🦷</div>
+                    <p className="text-xs sm:text-sm">Service Image</p>
                   </div>
                 </div>
               </div>
 
               {/* Service Title & Description */}
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
                   {service.title === 'Nha khoa' ? 'Chăm sóc nha khoa là gì?' : `${service.title} là gì?`}
                 </h2>
-                <p className="text-lg text-gray-700 mb-4">
+                <p className="text-base sm:text-lg text-gray-700 mb-3 sm:mb-4">
                   {service.shortDescription}
                 </p>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {service.fullDescription}
                 </p>
               </div>
 
               {/* Process Steps */}
-              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold text-blue-900 mb-6">Các bước khám</h3>
-                <div className="space-y-6">
+              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4 sm:mb-6">Các bước khám</h3>
+                <div className="space-y-4 sm:space-y-6">
                   {service.steps.map((step, index) => (
-                    <div key={index} className="flex gap-4">
+                    <div key={index} className="flex gap-3 sm:gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm sm:text-base">
                           {index + 1}
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-blue-900 mb-2">{step.title}</h4>
-                        <p className="text-gray-600">{step.description}</p>
+                        <h4 className="text-base sm:text-lg font-semibold text-blue-900 mb-1 sm:mb-2">{step.title}</h4>
+                        <p className="text-sm sm:text-base text-gray-600">{step.description}</p>
                       </div>
                     </div>
                   ))}
@@ -270,111 +312,113 @@ const ServiceDetail = () => {
               </div>
 
               {/* Pricing Table */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                    <span className="text-green-600 text-xl">+</span>
+              <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+                <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center">
+                    <span className="text-green-600 text-lg sm:text-xl">+</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-blue-900">Giá Dịch Vụ Phổ Biến</h3>
-                    <p className="text-sm text-gray-500">GÓI DỊCH VỤ</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-blue-900">Giá Dịch Vụ Phổ Biến</h3>
+                    <p className="text-xs sm:text-sm text-gray-500">GÓI DỊCH VỤ</p>
                   </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr>
-                        <th className="text-left p-4 font-semibold text-blue-900">Danh sách dịch vụ</th>
-                        <th className="text-center p-4 font-semibold text-blue-900">Cơ bản</th>
-                        <th className="text-center p-4 font-semibold text-blue-900">Tiêu chuẩn</th>
-                        <th className="text-center p-4 font-semibold text-blue-900">Nâng cao</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {['Dịch vụ tim mạch', 'Nội soi', 'Nha khoa', 'Thị giác', 'Xương khớp', 'Siêu âm'].map((serviceName) => (
-                        <tr key={serviceName} className="border-b border-gray-200">
-                          <td className="p-4 text-gray-700">{serviceName}</td>
-                          <td className="p-4 text-center">
-                            {service.pricing.basic.services.includes(serviceName) && (
-                              <FaCheck className="text-green-500 mx-auto" />
-                            )}
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <div className="inline-block min-w-full align-middle">
+                    <table className="w-full">
+                      <thead>
+                        <tr>
+                          <th className="text-left p-2 sm:p-4 font-semibold text-blue-900 text-xs sm:text-sm">Danh sách dịch vụ</th>
+                          <th className="text-center p-2 sm:p-4 font-semibold text-blue-900 text-xs sm:text-sm">Cơ bản</th>
+                          <th className="text-center p-2 sm:p-4 font-semibold text-blue-900 text-xs sm:text-sm">Tiêu chuẩn</th>
+                          <th className="text-center p-2 sm:p-4 font-semibold text-blue-900 text-xs sm:text-sm">Nâng cao</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {['Dịch vụ tim mạch', 'Nội soi', 'Nha khoa', 'Thị giác', 'Xương khớp', 'Siêu âm'].map((serviceName) => (
+                          <tr key={serviceName} className="border-b border-gray-200">
+                            <td className="p-2 sm:p-4 text-gray-700 text-xs sm:text-sm">{serviceName}</td>
+                            <td className="p-2 sm:p-4 text-center">
+                              {service.pricing.basic.services.includes(serviceName) && (
+                                <FaCheck className="text-green-500 mx-auto" />
+                              )}
+                            </td>
+                            <td className="p-2 sm:p-4 text-center">
+                              {service.pricing.standard.services.includes(serviceName) && (
+                                <FaCheck className="text-green-500 mx-auto" />
+                              )}
+                            </td>
+                            <td className="p-2 sm:p-4 text-center">
+                              {service.pricing.advanced.services.includes(serviceName) && (
+                                <FaCheck className="text-green-500 mx-auto" />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td className="p-2 sm:p-4 font-semibold text-blue-900 text-xs sm:text-sm">Giá / tháng</td>
+                          <td className="p-2 sm:p-4 text-center">
+                            <div className="bg-green-500 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-4 rounded-lg inline-block text-xs sm:text-sm">
+                              {service.pricing.basic.price}
+                            </div>
                           </td>
-                          <td className="p-4 text-center">
-                            {service.pricing.standard.services.includes(serviceName) && (
-                              <FaCheck className="text-green-500 mx-auto" />
-                            )}
+                          <td className="p-2 sm:p-4 text-center">
+                            <div className="bg-blue-500 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-4 rounded-lg inline-block text-xs sm:text-sm">
+                              {service.pricing.standard.price}
+                            </div>
                           </td>
-                          <td className="p-4 text-center">
-                            {service.pricing.advanced.services.includes(serviceName) && (
-                              <FaCheck className="text-green-500 mx-auto" />
-                            )}
+                          <td className="p-2 sm:p-4 text-center">
+                            <div className="bg-green-500 text-white font-bold py-1.5 sm:py-2 px-2 sm:px-4 rounded-lg inline-block text-xs sm:text-sm">
+                              {service.pricing.advanced.price}
+                            </div>
                           </td>
                         </tr>
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td className="p-4 font-semibold text-blue-900">Giá / tháng</td>
-                        <td className="p-4 text-center">
-                          <div className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg inline-block">
-                            {service.pricing.basic.price}
-                          </div>
-                        </td>
-                        <td className="p-4 text-center">
-                          <div className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg inline-block">
-                            {service.pricing.standard.price}
-                          </div>
-                        </td>
-                        <td className="p-4 text-center">
-                          <div className="bg-green-500 text-white font-bold py-2 px-4 rounded-lg inline-block">
-                            {service.pricing.advanced.price}
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td className="p-4 text-center">
-                          <Button color="primary" size="medium" className="w-full">
-                            CHỌN DỊCH VỤ
-                          </Button>
-                        </td>
-                        <td className="p-4 text-center">
-                          <Button color="secondary" size="medium" className="w-full">
-                            CHỌN DỊCH VỤ
-                          </Button>
-                        </td>
-                        <td className="p-4 text-center">
-                          <Button color="primary" size="medium" className="w-full">
-                            CHỌN DỊCH VỤ
-                          </Button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
+                        <tr>
+                          <td></td>
+                          <td className="p-2 sm:p-4 text-center">
+                            <Button color="primary" size="medium" className="w-full text-xs sm:text-sm">
+                              CHỌN DỊCH VỤ
+                            </Button>
+                          </td>
+                          <td className="p-2 sm:p-4 text-center">
+                            <Button color="secondary" size="medium" className="w-full text-xs sm:text-sm">
+                              CHỌN DỊCH VỤ
+                            </Button>
+                          </td>
+                          <td className="p-2 sm:p-4 text-center">
+                            <Button color="primary" size="medium" className="w-full text-xs sm:text-sm">
+                              CHỌN DỊCH VỤ
+                            </Button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
               </div>
 
               {/* Booking Form */}
-              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-6 lg:p-8">
-                <h3 className="text-2xl font-bold text-blue-900 mb-6">Đặt lịch tư vấn</h3>
-                <form className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4 sm:mb-6">Đặt lịch tư vấn</h3>
+                <form className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <input
                       type="text"
                       placeholder="Họ tên *"
-                      className="w-full rounded-full bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                      className="w-full rounded-full bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                       required
                     />
                     <input
                       type="tel"
                       placeholder="Số điện thoại *"
-                      className="w-full rounded-full bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                      className="w-full rounded-full bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                       required
                     />
                   </div>
                   <select
-                    className="w-full rounded-full bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
+                    className="w-full rounded-full bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
                     defaultValue=""
                     required
                   >
@@ -385,22 +429,22 @@ const ServiceDetail = () => {
                       </option>
                     ))}
                   </select>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <input
                       type="date"
-                      className="w-full rounded-full bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
+                      className="w-full rounded-full bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
                       required
                     />
                     <input
                       type="time"
-                      className="w-full rounded-full bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
+                      className="w-full rounded-full bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent text-gray-700"
                       required
                     />
                   </div>
                   <textarea
                     placeholder="Ghi chú (tùy chọn)"
                     rows={4}
-                    className="w-full rounded-2xl bg-white border border-gray-300 px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent resize-none"
+                    className="w-full rounded-2xl bg-white border border-gray-300 px-4 sm:px-5 py-2.5 sm:py-3 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent resize-none"
                   />
                   <div>
                     <Button color="primary" size="large" className="w-full">

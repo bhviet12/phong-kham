@@ -50,20 +50,20 @@ const DoctorsSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 relative z-10">
           {doctors.map((doctor) => (
             <div
               key={doctor.name}
-              className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 lg:p-8 flex flex-col items-center text-center border border-gray-100"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 p-4 sm:p-6 lg:p-8 flex flex-col items-center text-center border border-gray-100"
             >
-              <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden mb-5 bg-gradient-to-br from-teal-100 via-blue-50 to-green-100 flex items-end justify-center">
+              <div className="w-full aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden mb-3 sm:mb-5 bg-gradient-to-br from-teal-100 via-blue-50 to-green-100 flex items-end justify-center">
                 {/* TODO: replace with real doctor image */}
-                <span className="mb-6 text-sm text-blue-900/70">Doctor Image</span>
+                <span className="mb-4 sm:mb-6 text-xs sm:text-sm text-blue-900/70">Doctor Image</span>
               </div>
-              <h3 className="text-lg lg:text-xl font-bold text-blue-900 mb-1">
+              <h3 className="text-sm sm:text-base lg:text-lg lg:text-xl font-bold text-blue-900 mb-1">
                 {doctor.name}
               </h3>
-              <p className="text-sm text-gray-500">{doctor.role}</p>
+              <p className="text-xs sm:text-sm text-gray-500">{doctor.role}</p>
             </div>
           ))}
         </div>

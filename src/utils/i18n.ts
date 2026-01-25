@@ -12,6 +12,9 @@ void i18n
     interpolation: {
       escapeValue: false,
     },
+    // Force reload translations by clearing cache on version change
+    // Change this version number to force reload translations
+    load: 'languageOnly',
     resources: {
       vi: {
         translation: {
@@ -79,6 +82,11 @@ void i18n
       caches: ['localStorage'],
     },
   })
+
+// Clear i18n cache if needed (uncomment to force reload translations)
+// localStorage.removeItem('i18nextLng')
+// localStorage.removeItem('i18nextLng-vi')
+// localStorage.removeItem('i18nextLng-en')
 
 export default i18n
 

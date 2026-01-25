@@ -8,9 +8,9 @@ const Header = () => {
   return (
     <header className="w-full bg-blue-600 text-white font-bold">
       <Container>
-        <div className="grid grid-cols-2 gap-4 py-3">
+        <div className="flex flex-row lg:grid lg:grid-cols-2 gap-4 py-3">
         {/* Left side - Contact info */}
-        <div className="flex items-center gap-6 col-span-2 lg:col-span-1">
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 flex-1 lg:col-span-1">
           {/* Phone */}
           <div className="flex items-center">
             <span className="icon">
@@ -37,7 +37,7 @@ const Header = () => {
         </div>
 
         {/* Right side - Social icons */}
-        <div className="flex justify-end items-center col-span-2 lg:col-span-1">
+        <div className="flex justify-end items-center lg:col-span-1">
           <h2 className="text-sm mr-2">Mạng xã hộ :</h2>
           <a href="#" className="icon-social">
             <FaFacebook />

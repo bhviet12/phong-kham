@@ -54,9 +54,8 @@ const ReviewsSection = () => {
     },
   ]
 
-  // Chia reviews thành các nhóm 2 cards mỗi slide
-  const reviewsPerSlide = 2
-  const totalSlides = Math.ceil(reviews.length / reviewsPerSlide)
+  // Hiển thị 1 card mỗi slide
+  const totalSlides = reviews.length
   const [activeSlide, setActiveSlide] = useState(0)
 
   // Auto-play carousel
@@ -87,22 +86,22 @@ const ReviewsSection = () => {
 
       <Container>
         {/* Header */}
-        <div className="text-center mb-12 relative z-10">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              <FaHeart className="text-blue-600" />
+        <div className="text-center mb-8 sm:mb-12 relative z-10">
+          <div className="flex items-center justify-center gap-2 mb-3 sm:mb-4">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <FaHeart className="text-blue-600 text-sm sm:text-base" />
             </div>
-            <span className="text-green-500 font-semibold uppercase text-sm tracking-wide">
+            <span className="text-green-500 font-semibold uppercase text-xs sm:text-sm tracking-wide">
               ĐÁNH GIÁ TÍCH CỰC
             </span>
           </div>
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900">
             Đánh Giá Từ Khách Hàng
           </h2>
         </div>
 
         {/* Review Cards Carousel */}
-        <div className="relative mb-8 overflow-hidden">
+        <div className="relative mb-6 sm:mb-8 overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{
@@ -110,56 +109,50 @@ const ReviewsSection = () => {
             }}
           >
             {Array.from({ length: totalSlides }).map((_, slideIndex) => {
-              const slideReviews = reviews.slice(
-                slideIndex * reviewsPerSlide,
-                slideIndex * reviewsPerSlide + reviewsPerSlide
-              )
+              const review = reviews[slideIndex]
               return (
                 <div
                   key={slideIndex}
-                  className="min-w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-2"
+                  className="min-w-full px-2"
                 >
-                  {slideReviews.map((review, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-50 rounded-2xl p-6 lg:p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      {/* Quote icon - bottom right */}
-                      <div className="absolute bottom-4 right-4 text-green-200 text-6xl lg:text-7xl font-serif leading-none">
-                        "
+                  <div
+                    className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow max-w-2xl mx-auto"
+                  >
+                    {/* Quote icon - bottom right */}
+                    <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 text-green-200 text-4xl sm:text-6xl lg:text-7xl font-serif leading-none">
+                      "
+                    </div>
+
+                    {/* Star rating */}
+                    <div className="flex gap-1 mb-3 sm:mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar
+                          key={i}
+                          className={`text-sm sm:text-lg ${
+                            i < review.rating
+                              ? 'text-yellow-400 fill-yellow-400'
+                              : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Quote text */}
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6 pr-6 sm:pr-8">
+                      {review.quote}
+                    </p>
+
+                    {/* Customer info */}
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center flex-shrink-0">
+                        <span className="text-gray-400 text-xs">Avatar</span>
                       </div>
-
-                      {/* Star rating */}
-                      <div className="flex gap-1 mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar
-                            key={i}
-                            className={`text-lg ${
-                              i < review.rating
-                                ? 'text-yellow-400 fill-yellow-400'
-                                : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
-                      </div>
-
-                      {/* Quote text */}
-                      <p className="text-sm lg:text-base text-gray-700 leading-relaxed mb-6 pr-8">
-                        {review.quote}
-                      </p>
-
-                      {/* Customer info */}
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center flex-shrink-0">
-                          <span className="text-gray-400 text-xs">Avatar</span>
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900">{review.name}</p>
-                          <p className="text-sm text-gray-500">{review.role}</p>
-                        </div>
+                      <div>
+                        <p className="font-bold text-gray-900 text-sm sm:text-base">{review.name}</p>
+                        <p className="text-xs sm:text-sm text-gray-500">{review.role}</p>
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
               )
             })}
@@ -172,7 +165,7 @@ const ReviewsSection = () => {
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all cursor-pointer ${
                 index === activeSlide
                   ? 'bg-green-500 border-2 border-green-300 scale-110'
                   : 'bg-gray-300 hover:bg-gray-400'
