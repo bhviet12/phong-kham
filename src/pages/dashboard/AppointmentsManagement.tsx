@@ -163,6 +163,68 @@ const AppointmentsManagement = () => {
         </span>
       )
     },
+    {
+      key: 'actions',
+      header: 'Thao tác',
+      render: (appointment: Appointment) => (
+        <div className="flex gap-2 flex-wrap">
+          {canManageAppointments && (
+            <>
+              {appointment.status === 'pending' && (
+                <>
+                  <button
+                    onClick={() => handleStatusChange(appointment.id, 'confirmed')}
+                    className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+                    title="Xác nhận"
+                  >
+                    <FaCheck /> Xác nhận
+                  </button>
+                  <button
+                    onClick={() => handleStatusChange(appointment.id, 'cancelled')}
+                    className="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+                    title="Hủy"
+                  >
+                    <FaTimes /> Hủy
+                  </button>
+                </>
+              )}
+              {appointment.status === 'confirmed' && (
+                <>
+                  <button
+                    onClick={() => handleStatusChange(appointment.id, 'completed')}
+                    className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+                    title="Hoàn thành"
+                  >
+                    <FaCheck /> Hoàn thành
+                  </button>
+                  <button
+                    className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+                    title="Gửi email"
+                  >
+                    <FaEnvelope /> Email
+                  </button>
+                  <button
+                    className="px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+                    title="Gửi SMS"
+                  >
+                    <FaSms /> SMS
+                  </button>
+                </>
+              )}
+            </>
+          )}
+          {user?.role === 'doctor' && appointment.status === 'confirmed' && (
+            <button
+              onClick={() => handleStatusChange(appointment.id, 'completed')}
+              className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium whitespace-nowrap"
+              title="Hoàn thành khám"
+            >
+              <FaCheck /> Hoàn thành
+            </button>
+          )}
+        </div>
+      )
+    },
   ]
 
   const filterFields = [
@@ -194,83 +256,6 @@ const AppointmentsManagement = () => {
         addButtonText="Thêm lịch hẹn"
         actionsColumn={false}
       />
-
-      {/* Custom Actions Column */}
-      {filteredAppointments.length > 0 && (
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden mt-6">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {filteredAppointments.map((appointment) => (
-                  <tr key={appointment.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      {canManageAppointments && (
-                        <div className="flex gap-2">
-                          {appointment.status === 'pending' && (
-                            <>
-                              <button
-                                onClick={() => handleStatusChange(appointment.id, 'confirmed')}
-                                className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                                title="Xác nhận"
-                              >
-                                <FaCheck /> Xác nhận
-                              </button>
-                              <button
-                                onClick={() => handleStatusChange(appointment.id, 'cancelled')}
-                                className="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                                title="Hủy"
-                              >
-                                <FaTimes /> Hủy
-                              </button>
-                            </>
-                          )}
-                          {appointment.status === 'confirmed' && (
-                            <>
-                              <button
-                                onClick={() => handleStatusChange(appointment.id, 'completed')}
-                                className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                                title="Hoàn thành"
-                              >
-                                <FaCheck /> Hoàn thành
-                              </button>
-                              <button
-                                className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                                title="Gửi email"
-                              >
-                                <FaEnvelope /> Email
-                              </button>
-                              <button
-                                className="px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                                title="Gửi SMS"
-                              >
-                                <FaSms /> SMS
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      )}
-                      {user?.role === 'doctor' && appointment.status === 'confirmed' && (
-                        <button
-                          onClick={() => handleStatusChange(appointment.id, 'completed')}
-                          className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-                          title="Hoàn thành khám"
-                        >
-                          <FaCheck /> Hoàn thành
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
 
       {/* Assign Doctor Modal */}
       {showModal && selectedAppointment && (

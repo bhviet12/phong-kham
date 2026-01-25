@@ -36,12 +36,14 @@ const DashboardLayout = () => {
       { path: '/dashboard/settings', icon: FaCog, label: 'Cài đặt', roles: ['admin'] },
     ]
 
-    const receptionistItems = [
-      { path: '/dashboard/payments', icon: FaDollarSign, label: 'Thu phí', roles: ['admin', 'receptionist'] },
-    ]
-
-    const allItems = [...baseItems, ...adminItems, ...receptionistItems]
-    return allItems.filter(item => item.roles.includes(user?.role || 'admin'))
+    const allItems = [...baseItems, ...adminItems]
+    
+    // Remove duplicates based on path
+    const uniqueItems = allItems.filter((item, index, self) =>
+      index === self.findIndex((t) => t.path === item.path)
+    )
+    
+    return uniqueItems.filter(item => item.roles.includes(user?.role || 'admin'))
   }
 
   const menuItems = getMenuItems()
