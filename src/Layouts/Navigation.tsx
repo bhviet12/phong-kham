@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Button from '../components/Button/index.tsx'
 import Container from '../components/Container'
 import logo from '../assets/static/images.png'
-import { FaSearch, FaHeart, FaShoppingCart } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 const Navigation = () => {
   const { t, i18n } = useTranslation()
@@ -71,18 +71,6 @@ const Navigation = () => {
             {/* Search Icon */}
             <button className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors">
               <FaSearch className="text-xl" />
-            </button>
-
-            {/* Wishlist Icon */}
-            <button className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors">
-              <FaHeart className="text-xl" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
-            </button>
-
-            {/* Cart Icon */}
-            <button className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors">
-              <FaShoppingCart className="text-xl" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
             </button>
 
             {/* Language toggle */}

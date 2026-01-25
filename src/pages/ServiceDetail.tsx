@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ReactElement } from 'react'
 import { useSEO } from '../utils/seo'
@@ -133,22 +133,16 @@ const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedSlug, setSelectedSlug] = useState(slug || 'nha-khoa')
+  // Use slug from URL as the source of truth
+  const currentSlug = slug || 'nha-khoa'
   
-  const service = selectedSlug ? (servicesData[selectedSlug] || defaultServiceData) : defaultServiceData
-
-  useEffect(() => {
-    if (slug) {
-      setSelectedSlug(slug)
-    }
-  }, [slug])
+  const service = currentSlug ? (servicesData[currentSlug] || defaultServiceData) : defaultServiceData
 
   const filteredServices = serviceList.filter(service =>
     service.title.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   const handleServiceClick = (serviceSlug: string) => {
-    setSelectedSlug(serviceSlug)
     navigate(`/service/${serviceSlug}`, { replace: true })
   }
 
@@ -156,7 +150,7 @@ const ServiceDetail = () => {
     title: `${service.title} - Chi tiết dịch vụ | Phòng Khám Chất Lượng`,
     description: service.shortDescription,
     keywords: `${service.title}, dịch vụ y tế, phòng khám`,
-    canonical: typeof window !== 'undefined' && selectedSlug ? `${window.location.origin}/service/${selectedSlug}` : ''
+    canonical: typeof window !== 'undefined' && currentSlug ? `${window.location.origin}/service/${currentSlug}` : ''
   })
 
   return (
@@ -216,7 +210,7 @@ const ServiceDetail = () => {
                         key={item.slug}
                         onClick={() => handleServiceClick(item.slug)}
                         className={`w-full flex items-center justify-between p-3 rounded-lg transition-all ${
-                          selectedSlug === item.slug
+                          currentSlug === item.slug
                             ? 'bg-blue-50 text-blue-900 font-semibold'
                             : 'hover:bg-gray-50 text-gray-700'
                         }`}

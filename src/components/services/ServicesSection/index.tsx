@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Container from '../../Container'
 import Button from '../../Button'
 import { Link } from 'react-router-dom'
@@ -17,7 +18,19 @@ import {
 } from 'react-icons/fa'
 import { FaStethoscope } from 'react-icons/fa'
 
+// Generate random positions for decorative icons outside component
+const generateDecorativeIcons = () => {
+  return Array.from({ length: 20 }, () => ({
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    fontSize: Math.random() * 20 + 10,
+  }))
+}
+
 const ServicesSection = () => {
+  // Generate random positions for decorative icons once on mount
+  const [decorativeIcons] = useState(() => generateDecorativeIcons())
+
   const services = [
     {
       slug: 'chuan-doan',
@@ -184,14 +197,14 @@ const ServicesSection = () => {
 
             {/* Decorative snowflake icons */}
             <div className="absolute inset-0 opacity-5">
-              {[...Array(20)].map((_, i) => (
+              {decorativeIcons.map((icon, i) => (
                 <div
                   key={i}
                   className="absolute text-white"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    fontSize: `${Math.random() * 20 + 10}px`,
+                    left: `${icon.left}%`,
+                    top: `${icon.top}%`,
+                    fontSize: `${icon.fontSize}px`,
                   }}
                 >
                   ✱

@@ -1,7 +1,7 @@
 import { Button, ConfigProvider } from "antd"
 import type { FC, ReactNode, CSSProperties } from "react"
 import type { ButtonProps } from "antd"
-import { useCallback } from "react"
+import { useCallback, useMemo } from "react"
 
 interface ColorButtonProps extends Omit<ButtonProps, "color" | "size"> {
   children: ReactNode
@@ -24,8 +24,8 @@ const ColorButton: FC<ColorButtonProps> = ({
   rightIcon,
   ...props 
 }) => {
-  // Configs
-  const configs = {
+  // Configs - memoized to avoid recreating on every render
+  const configs = useMemo(() => ({
     size: {
       small: { padding: "4px 16px", fontSize: "14px", height: "32px" },
       medium: { padding: "8px 24px", fontSize: "16px", height: "40px" },
@@ -47,12 +47,12 @@ const ColorButton: FC<ColorButtonProps> = ({
         boxShadow: "0 4px 8px rgba(59, 130, 246, 0.3), 0 -2px 4px rgba(59, 130, 246, 0.2)",
       },
       third: {
-        background: "linear-gradient(to bottom, #ffffff, #f8f9fa)",
-        border: "1px solid rgba(59, 130, 246, 0.3)",
-        borderRadius: "8px",
+        background: "#ffffff",
+        border: "1px solid rgba(0, 0, 0, 0.1)",
+        borderRadius: "9999px",
         color: "#000000",
         fontWeight: 600,
-        boxShadow: "0 4px 8px rgba(59, 130, 246, 0.15), 0 -2px 4px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(0, 0, 0, 0.05)",
       }
     },
     hover: {
@@ -65,8 +65,8 @@ const ColorButton: FC<ColorButtonProps> = ({
         boxShadow: "0 6px 12px rgba(59, 130, 246, 0.4), 0 -3px 6px rgba(59, 130, 246, 0.3)"
       },
       third: { 
-        background: "linear-gradient(to bottom, #f8f9fa, #ffffff)",
-        boxShadow: "0 6px 12px rgba(59, 130, 246, 0.25), 0 -3px 6px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9)"
+        background: "#f8f9fa",
+        boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15), 0 -3px 6px rgba(0, 0, 0, 0.08)"
       }
     },
     disabled: {
@@ -74,7 +74,7 @@ const ColorButton: FC<ColorButtonProps> = ({
       secondary: { background: "linear-gradient(to right, #9ca3af, #6b7280)", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
       third: { background: "#f3f4f6", color: "#9ca3af", opacity: 0.6, cursor: "not-allowed", boxShadow: "none", border: "1px solid #e5e7eb" }
     }
-  }
+  }), [])
 
   // Button style
   const buttonStyle: CSSProperties = {
@@ -91,7 +91,7 @@ const ColorButton: FC<ColorButtonProps> = ({
     e.currentTarget.style.background = hover.background
     e.currentTarget.style.boxShadow = hover.boxShadow
     props.onMouseEnter?.(e)
-  }, [color, disabled, loading, props])
+  }, [color, disabled, loading, configs.hover, props])
 
   const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) return
@@ -99,7 +99,7 @@ const ColorButton: FC<ColorButtonProps> = ({
     e.currentTarget.style.background = normal.background as string
     e.currentTarget.style.boxShadow = normal.boxShadow as string
     props.onMouseLeave?.(e)
-  }, [color, disabled, loading, props])
+  }, [color, disabled, loading, configs.style, props])
 
   // Content với icons
   const content = (
