@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ReactElement } from 'react'
-import { useSEO } from '../utils/seo'
+import { useSEO, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
 import Container from '../components/Container'
 import Button from '../components/Button'
@@ -151,11 +151,44 @@ const ServiceDetail = () => {
     setIsDropdownOpen(false) // Close dropdown after selection
   }
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+  const currentUrl = currentSlug ? `${baseUrl}/service/${currentSlug}` : baseUrl
+
+  // Breadcrumb for structured data
+  const breadcrumbs = [
+    { name: 'Trang chủ', url: baseUrl },
+    { name: 'Dịch vụ', url: `${baseUrl}/services` },
+    { name: service.title, url: currentUrl }
+  ]
+
+  // Service structured data
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalService',
+    name: service.title,
+    description: service.fullDescription,
+    provider: {
+      '@type': 'MedicalBusiness',
+      name: 'Medical - Phòng Khám Chất Lượng'
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Vietnam'
+    },
+    serviceType: service.title
+  }
+
   useSEO({
     title: `${service.title} - Chi tiết dịch vụ | Phòng Khám Chất Lượng`,
     description: service.shortDescription,
     keywords: `${service.title}, dịch vụ y tế, phòng khám`,
-    canonical: typeof window !== 'undefined' && currentSlug ? `${window.location.origin}/service/${currentSlug}` : ''
+    canonical: currentUrl,
+    ogUrl: currentUrl,
+    type: 'product',
+    structuredData: [
+      generateBreadcrumbSchema(breadcrumbs),
+      serviceSchema
+    ]
   })
 
   return (

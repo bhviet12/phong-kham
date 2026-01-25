@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../contexts/AuthContext'
 import Button from '../components/Button/index.tsx'
 import Container from '../components/Container'
 import logo from '../assets/static/images.png'
-import { FaSearch, FaTimes, FaBars } from 'react-icons/fa'
+import { FaSearch, FaTimes, FaBars, FaUser } from 'react-icons/fa'
 
 const Navigation = () => {
   const { t, i18n } = useTranslation()
+  const { isAuthenticated } = useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const currentLang = i18n.language === 'en' ? 'en' : 'vi'
@@ -86,6 +88,24 @@ const Navigation = () => {
             >
               {currentLang === 'vi' ? 'VI' : 'EN'}
             </button>
+
+            {/* Login/Dashboard Link */}
+            {isAuthenticated ? (
+              <Link 
+                to="/dashboard" 
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                <FaUser className="text-base" />
+                <span>Dashboard</span>
+              </Link>
+            ) : (
+              <Link 
+                to="/login" 
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+              >
+                Đăng nhập
+              </Link>
+            )}
 
             {/* Contact Button */}
             <Link to="/contact">
@@ -170,6 +190,27 @@ const Navigation = () => {
                 >
                   {t('navigation.contact')}
                 </Link>
+              </li>
+              {/* Login/Dashboard Link - Mobile */}
+              <li>
+                {isAuthenticated ? (
+                  <Link 
+                    to="/dashboard" 
+                    className="flex items-center gap-2 text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                    onClick={closeMenu}
+                  >
+                    <FaUser className="text-base" />
+                    <span>Dashboard</span>
+                  </Link>
+                ) : (
+                  <Link 
+                    to="/login" 
+                    className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                    onClick={closeMenu}
+                  >
+                    Đăng nhập
+                  </Link>
+                )}
               </li>
               <li className="pt-2">
                 <Link to="/contact" onClick={closeMenu}>
