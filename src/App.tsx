@@ -9,6 +9,7 @@ const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
+const News = lazy(() => import('./pages/News'))
 const Login = lazy(() => import('./pages/Login'))
 
 // Dashboard
@@ -41,6 +42,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/service/:slug" element={<ServiceDetail />} />
+          <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
 

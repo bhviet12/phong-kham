@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Container from '../Container'
-import logo from '../../assets/static/images.png'
+import logo from '../../assets/static/TD logo_Artboard 4 copy 3.png'
 import {
   FaEnvelope,
   FaPhoneAlt,
@@ -57,12 +57,8 @@ const Footer = () => {
           {/* Column 1: Brand and Contact Info */}
           <div className="space-y-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center mb-4">
-              <img src={logo} alt="Logo" className="w-10 sm:w-12 p-1 mr-2 sm:mr-3" />
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-white">Medical</h3>
-                <p className="text-xs sm:text-sm text-green-500">Mona Media</p>
-              </div>
+            <Link to="/" className="mb-4 inline-block">
+              <img src={logo} alt="Logo" className="w-32 sm:w-36 md:w-40 lg:w-44 h-auto" />
             </Link>
 
             {/* Description */}
