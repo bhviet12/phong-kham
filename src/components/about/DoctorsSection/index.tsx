@@ -60,7 +60,7 @@ const DoctorsSection = () => {
                 {/* TODO: replace with real doctor image */}
                 <span className="mb-4 sm:mb-6 text-xs sm:text-sm text-blue-900/70">Doctor Image</span>
               </div>
-              <h3 className="text-sm sm:text-base lg:text-lg lg:text-xl font-bold text-blue-900 mb-1">
+              <h3 className="text-sm sm:text-base lg:text-xl font-bold text-blue-900 mb-1">
                 {doctor.name}
               </h3>
               <p className="text-xs sm:text-sm text-gray-500">{doctor.role}</p>

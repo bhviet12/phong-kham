@@ -97,7 +97,7 @@ const ServicesSection = () => {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-3 sm:mb-4 shadow-inner">
                 {service.icon}
               </div>
-              <h3 className="text-sm sm:text-base lg:text-lg lg:text-xl font-bold text-blue-900 mb-1">
+              <h3 className="text-sm sm:text-base lg:text-xl font-bold text-blue-900 mb-1">
                 {service.title}
               </h3>
               {service.subtitle && (

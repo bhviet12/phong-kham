@@ -6,7 +6,7 @@ import "./index.css"
 
 const Header = () => {
   return (
-    <header className="w-full bg-blue-600 text-white font-bold">
+    <header className="w-full bg-[#1e3a5f] text-white font-bold">
       <Container>
         <div className="flex flex-row lg:grid lg:grid-cols-2 gap-4 py-3">
         {/* Left side - Contact info */}
