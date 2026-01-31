@@ -133,7 +133,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Doctors banner below services */}
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white overflow-hidden relative z-10">
+        {/* <div className="mt-16 rounded-3xl bg-gradient-to-r from-blue-600 to-blue-500 text-white overflow-hidden relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-8 lg:px-16 py-10 lg:py-14">
             <div className="space-y-4 lg:space-y-6 max-w-xl order-2 lg:order-1">
               <p className="text-sm font-semibold text-teal-200 uppercase tracking-[0.25em]">
@@ -158,12 +158,11 @@ const ServicesSection = () => {
             </div>
             <div className="relative h-64 lg:h-80 flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="w-56 lg:w-72 h-full bg-gradient-to-t from-blue-400 to-blue-300 rounded-[40px] shadow-2xl flex items-end justify-center overflow-hidden">
-                {/* TODO: replace placeholder with real doctor image */}
                 <span className="mb-6 text-sm text-blue-50/80">Doctor Image</span>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </Container>
     </section>
   )

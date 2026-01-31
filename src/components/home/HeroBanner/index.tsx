@@ -1,8 +1,60 @@
+import { useState, useEffect } from 'react'
 import Button from '../../Button'
 import Container from '../../Container'
-import { FaHeartbeat, FaStethoscope } from "react-icons/fa"
+import { FaStethoscope, FaHospital, FaXRay } from "react-icons/fa"
 
 const HeroBanner = () => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const slides = [
+    {
+      id: 1,
+      badge: "ĐỘI NGŨ BÁC SĨ",
+      badgeIcon: FaStethoscope,
+      title1: "Bác sĩ",
+      title2: "chuyên nghiệp",
+      description: "Đội ngũ bác sĩ giàu kinh nghiệm, tận tâm và chuyên nghiệp, luôn sẵn sàng chăm sóc sức khỏe của bạn với dịch vụ chất lượng cao nhất.",
+      icon: FaStethoscope,
+      gradient: "from-blue-100 to-green-100",
+      iconColor: "text-blue-600",
+      imageText: "Bác Sĩ"
+    },
+    {
+      id: 2,
+      badge: "BỆNH VIỆN HIỆN ĐẠI",
+      badgeIcon: FaHospital,
+      title1: "Bệnh viện",
+      title2: "hiện đại",
+      description: "Cơ sở vật chất hiện đại, không gian sạch sẽ và tiện nghi, mang đến trải nghiệm chăm sóc sức khỏe tốt nhất cho bệnh nhân.",
+      icon: FaHospital,
+      gradient: "from-green-100 to-blue-100",
+      iconColor: "text-green-600",
+      imageText: "Bệnh Viện"
+    },
+    {
+      id: 3,
+      badge: "THIẾT BỊ TIÊN TIẾN",
+      badgeIcon: FaXRay,
+      title1: "Máy móc",
+      title2: "tiên tiến",
+      description: "Hệ thống máy móc và thiết bị y tế hiện đại, được nhập khẩu từ các nước phát triển, đảm bảo chẩn đoán chính xác và điều trị hiệu quả.",
+      icon: FaXRay,
+      gradient: "from-purple-100 to-blue-100",
+      iconColor: "text-purple-600",
+      imageText: "Máy Móc"
+    }
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 5000) // Chuyển slide mỗi 5 giây
+
+    return () => clearInterval(interval)
+  }, [slides.length])
+
+  const currentSlideData = slides[currentSlide]
+
   return (
     <section className="relative w-full bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       {/* Background decorative elements */}
@@ -34,27 +86,31 @@ const HeroBanner = () => {
           {/* Left side - Content */}
           <div className="relative z-10 order-2 lg:order-1">
             {/* Emergency service badge */}
-            <div className="flex items-center gap-2 mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 mb-4 sm:mb-6 transition-all duration-500">
               <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full">
-                <FaHeartbeat className="text-blue-600 text-sm sm:text-lg" />
+                {currentSlideData.badgeIcon && (
+                  <currentSlideData.badgeIcon className="text-blue-600 text-sm sm:text-lg" />
+                )}
               </div>
               <span className="text-green-600 font-semibold text-xs sm:text-sm lg:text-base">
-                DỊCH VỤ KHẨN CẤP 24/7
+                {currentSlideData.badge}
               </span>
             </div>
 
-            {/* Main heading */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight">
-              <span className="text-blue-900">Chăm sóc </span>
-              <span className="text-green-600">tận tâm</span>
-            </h1>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-blue-900">
-              Sức khỏe hàng đầu
-            </h2>
+            {/* Main heading with fade animation */}
+            <div className="transition-opacity duration-500">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight">
+                <span className="text-blue-900">{currentSlideData.title1} </span>
+                <span className="text-green-600">{currentSlideData.title2}</span>
+              </h1>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-blue-900">
+                Sức khỏe hàng đầu
+              </h2>
+            </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 leading-relaxed max-w-lg">
-              Khám phá sức khỏe và trải nghiệm dịch vụ chất lượng cao tại Bệnh viện/Phòng khám của chúng tôi - nơi mang đến sự chăm sóc tận tâm và sự an tâm cho bạn và gia đình.
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 leading-relaxed max-w-lg transition-opacity duration-500">
+              {currentSlideData.description}
             </p>
 
             {/* CTA Buttons */}
@@ -66,27 +122,58 @@ const HeroBanner = () => {
                 TẤT CẢ DỊCH VỤ
               </Button>
             </div>
+
+            {/* Slide indicators */}
+            <div className="flex gap-2 mt-6 sm:mt-8">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'w-8 bg-green-600'
+                      : 'w-2 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Chuyển đến slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* Right side - Doctor image */}
+          {/* Right side - Image carousel */}
           <div className="relative z-10 flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative">
-              {/* Placeholder for doctor image - replace with actual image */}
-              <div className="w-full max-w-xs sm:max-w-md lg:max-w-lg xl:max-w-xl">
-                <div className="relative bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl">
-                  <div className="aspect-square bg-white rounded-xl flex items-center justify-center">
-                    <FaStethoscope className="text-4xl sm:text-5xl lg:text-6xl text-blue-600 opacity-30" />
-                    {/* Replace this div with actual doctor image */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-gray-400 text-xs sm:text-sm">Doctor Image</span>
+            <div className="relative w-full max-w-xs sm:max-w-md lg:max-w-lg xl:max-w-xl">
+              {/* Slides container */}
+              <div className="relative overflow-hidden rounded-2xl">
+                {slides.map((slide, index) => {
+                  const IconComponent = slide.icon
+                  return (
+                    <div
+                      key={slide.id}
+                      className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                        index === currentSlide
+                          ? 'opacity-100 translate-x-0'
+                          : index < currentSlide
+                          ? 'opacity-0 -translate-x-full'
+                          : 'opacity-0 translate-x-full'
+                      }`}
+                    >
+                      <div className={`relative bg-gradient-to-br ${slide.gradient} rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl`}>
+                        <div className="aspect-square bg-white rounded-xl flex items-center justify-center relative">
+                          <IconComponent className={`text-4xl sm:text-5xl lg:text-6xl ${slide.iconColor} opacity-30`} />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-gray-400 text-xs sm:text-sm font-semibold">{slide.imageText}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  )
+                })}
               </div>
 
               {/* Decorative elements around image */}
               <div className="hidden sm:block absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 bg-green-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="hidden sm:block absolute -bottom-4 -left-4 w-24 h-24 sm:w-32 sm:h-32 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
+              <div className="hidden sm:block absolute -bottom-4 -left-4 w-24 h-24 sm:w-32 sm:w-32 bg-blue-500 rounded-full opacity-10 blur-xl"></div>
             </div>
           </div>
         </div>
