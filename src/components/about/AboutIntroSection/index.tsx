@@ -1,21 +1,11 @@
 import Button from '../../Button'
 import Container from '../../Container'
 import { Heart } from 'lucide-react'
+import { aboutPageData } from '../../../data/pages/aboutPage'
 
 const AboutIntroSection = () => {
-  const features = [
-    'Chuyên gia y tế',
-    'Công nghệ tiên tiến',
-    'Thiết bị hiện đại',
-    'Tư vấn y tế',
-  ]
-
-  const stats = [
-    { value: '69k+', label: 'Bệnh nhân hài lòng' },
-    { value: '236+', label: 'Bác sĩ chuyên nghiệp' },
-    { value: '19k+', label: 'Hoạt động thành công' },
-    { value: '320+', label: 'Phần thưởng đánh giá' },
-  ]
+  const { introSection } = aboutPageData
+  const { badge, title, description, features, buttonText, testimonial, stats } = introSection
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-b from-white via-slate-50 to-white">
@@ -63,13 +53,13 @@ const AboutIntroSection = () => {
               {/* Testimonial card overlay */}
               <div className="absolute bottom-4 left-4 right-4 bg-white rounded-xl shadow-2xl p-4 border border-slate-100">
                 <h3 className="text-base font-bold text-blue-900 mb-1">
-                  Dr. Esita Jabed
+                  {testimonial.name}
                 </h3>
                 <p className="text-xs text-gray-600 mb-2 leading-relaxed">
-                  Tôi rất ấn tượng với đội ngũ y bác sĩ tại Bệnh viện
+                  {testimonial.quote}
                 </p>
                 <div className="flex items-center gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
+                  {[...Array(testimonial.rating)].map((_, i) => (
                     <span key={i} className="text-green-500 text-xs">
                       ★
                     </span>
@@ -77,7 +67,7 @@ const AboutIntroSection = () => {
                 </div>
                 <div className="flex items-center gap-1.5 text-xs text-green-600 font-semibold">
                   <span>📞</span>
-                  <span>+(84) 0313-728-397</span>
+                  <span>{testimonial.phone}</span>
                 </div>
               </div>
             </div>
@@ -88,18 +78,16 @@ const AboutIntroSection = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-full">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span className="text-xs font-bold tracking-widest text-emerald-700 uppercase">
-                KHÁM PHÁ DỊCH VỤ
+                {badge}
               </span>
             </div>
 
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-blue-900 leading-tight">
-              Chăm Sóc Sức Khỏe Là Ưu Tiên Hàng Đầu
+              {title}
             </h2>
 
             <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
-              Tại Bệnh viện/Phòng khám, chúng tôi tận tâm chăm sóc từng bệnh nhân, đặt sự an toàn
-              và thoải mái lên hàng đầu. Chúng tôi cung cấp đa dạng dịch vụ y tế từ khám tổng quát,
-              chẩn đoán, điều trị cho đến chăm sóc sau xuất viện.
+              {description}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -113,7 +101,7 @@ const AboutIntroSection = () => {
 
             <div className="pt-2">
               <Button color="primary" size="large">
-                KHÁM PHÁ
+                {buttonText}
               </Button>
             </div>
           </div>

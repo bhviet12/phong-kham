@@ -33,40 +33,45 @@ const ColorButton: FC<ColorButtonProps> = ({
     },
     style: {
       primary: {
-        background: "linear-gradient(to right, #22c55e, #16a34a)",
+        background: "#1e3a5f", // Dark navy blue
         border: "none",
-        borderRadius: "9999px",
-        color: "#000000",
-        boxShadow: "0 4px 8px rgba(34, 197, 94, 0.3), 0 -2px 4px rgba(34, 197, 94, 0.2)",
+        borderRadius: "50px",
+        color: "#ffffff",
+        boxShadow: "0 2px 6px rgba(30, 58, 95, 0.25), 0 -1px 3px rgba(30, 58, 95, 0.15)",
+        fontFamily: "'EB Garamond', serif",
+        fontWeight: 400,
       },
       secondary: {
-        background: "linear-gradient(to right, #3b82f6, #2563eb)",
+        background: "#2563eb", // Royal blue
         border: "none",
-        borderRadius: "9999px",
+        borderRadius: "50px",
         color: "#ffffff",
-        boxShadow: "0 4px 8px rgba(59, 130, 246, 0.3), 0 -2px 4px rgba(59, 130, 246, 0.2)",
+        boxShadow: "0 2px 6px rgba(37, 99, 235, 0.25), 0 -1px 3px rgba(37, 99, 235, 0.15)",
+        fontFamily: "'EB Garamond', serif",
+        fontWeight: 400,
       },
       third: {
-        background: "#ffffff",
-        border: "1px solid rgba(0, 0, 0, 0.1)",
-        borderRadius: "9999px",
-        color: "#000000",
-        fontWeight: 600,
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(0, 0, 0, 0.05)",
+        background: "#fef3c7", // Pale cream
+        border: "1px solid #1e3a5f",
+        borderRadius: "50px",
+        color: "#1e3a5f",
+        fontWeight: 400,
+        boxShadow: "0 2px 6px rgba(30, 58, 95, 0.08), 0 -1px 3px rgba(30, 58, 95, 0.04)",
+        fontFamily: "'EB Garamond', serif",
       }
     },
     hover: {
       primary: { 
-        background: "linear-gradient(to right, #16a34a, #15803d)",
-        boxShadow: "0 6px 12px rgba(34, 197, 94, 0.4), 0 -3px 6px rgba(34, 197, 94, 0.3)"
+        background: "#1a2f4d",
+        boxShadow: "0 4px 10px rgba(30, 58, 95, 0.35), 0 -2px 5px rgba(30, 58, 95, 0.25)"
       },
       secondary: { 
-        background: "linear-gradient(to right, #2563eb, #1d4ed8)",
-        boxShadow: "0 6px 12px rgba(59, 130, 246, 0.4), 0 -3px 6px rgba(59, 130, 246, 0.3)"
+        background: "#1d4ed8",
+        boxShadow: "0 4px 10px rgba(37, 99, 235, 0.35), 0 -2px 5px rgba(37, 99, 235, 0.25)"
       },
       third: { 
-        background: "#f8f9fa",
-        boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15), 0 -3px 6px rgba(0, 0, 0, 0.08)"
+        background: "#fde68a",
+        boxShadow: "0 4px 10px rgba(30, 58, 95, 0.12), 0 -2px 5px rgba(30, 58, 95, 0.06)"
       }
     },
     disabled: {
@@ -111,7 +116,7 @@ const ColorButton: FC<ColorButtonProps> = ({
   )
 
   return (
-    <ConfigProvider theme={{ token: { borderRadius: color === "third" ? 8 : 9999 } }}>
+    <ConfigProvider theme={{ token: { borderRadius: 50 } }}>
       <Button 
         {...props} 
         type={type || (color === "third" ? "default" : "primary")}

@@ -12,6 +12,7 @@ import {
   FaClock
 } from 'react-icons/fa'
 import { FaLocationDot } from 'react-icons/fa6'
+import { contactPageData } from '../data/pages/contactPage'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,20 +31,22 @@ const Contact = () => {
     { name: 'Liên hệ', url: contactUrl }
   ]
 
+  const { regions, operatingHours, operatingHoursTitle, supportForm, contactSchema: schemaData } = contactPageData
+
   // ContactPage structured data
   const contactSchema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     mainEntity: {
       '@type': 'MedicalBusiness',
-      name: 'Medical - Phòng Khám Chất Lượng',
+      name: schemaData.businessName,
       address: {
         '@type': 'PostalAddress',
-        addressCountry: 'VN',
-        addressLocality: 'Việt Nam'
+        addressCountry: schemaData.country,
+        addressLocality: schemaData.locality
       },
-      telephone: '+84-xxx-xxx-xxx',
-      email: 'contact@medical.com'
+      telephone: schemaData.telephone,
+      email: schemaData.email
     }
   }
 
@@ -60,26 +63,6 @@ const Contact = () => {
     ]
   })
 
-  const regions = [
-    {
-      name: 'Miền Nam',
-      address: '1073/23 Cách Mạng Tháng 8, P.7, Q. Tân Bình, TP.HCM',
-      email: 'info@themona.global',
-      phone: '(+84) 0313-728-397'
-    },
-    {
-      name: 'Miền Trung',
-      address: '1073/23 Cách Mạng Tháng 8, P.7, Q. Tân Bình, TP.HCM',
-      email: 'info@themona.global',
-      phone: '(+84) 0313-728-397'
-    },
-    {
-      name: 'Miền Bắc',
-      address: '1073/23 Cách Mạng Tháng 8, P.7, Q. Tân Bình, TP.HCM',
-      email: 'info@themona.global',
-      phone: '(+84) 0313-728-397'
-    }
-  ]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -130,11 +113,11 @@ const Contact = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl shadow-md p-4 border border-gray-100">
                   <div className="flex items-center gap-2 mb-3">
                     <FaClock className="text-blue-600" />
-                    <h4 className="text-sm font-bold text-blue-900">Giờ hoạt động</h4>
+                    <h4 className="text-sm font-bold text-blue-900">{operatingHoursTitle}</h4>
                   </div>
                   <div className="space-y-1 text-xs text-gray-600">
-                    <p>Thứ hai - thứ sáu: 09:00 - 18:00</p>
-                    <p>Thứ bảy - chủ nhật: Đóng cửa</p>
+                    <p>{operatingHours.weekdays}</p>
+                    <p>{operatingHours.weekends}</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +143,7 @@ const Contact = () => {
         <Container>
           <div className="relative z-10">
             <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 text-center mb-8 lg:mb-12">
-              Bạn Cần Hỗ Trợ ?
+              {supportForm.title}
             </h2>
 
             <div className="flex justify-center">
@@ -171,7 +154,7 @@ const Contact = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Họ tên *"
+                      placeholder={supportForm.fields.name.placeholder}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-10 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
@@ -184,7 +167,7 @@ const Contact = () => {
                   <div className="relative">
                     <input
                       type="email"
-                      placeholder="Email *"
+                      placeholder={supportForm.fields.email.placeholder}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-10 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
@@ -197,7 +180,7 @@ const Contact = () => {
                   <div className="relative">
                     <input
                       type="tel"
-                      placeholder="Số điện thoại *"
+                      placeholder={supportForm.fields.phone.placeholder}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-10 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
@@ -214,11 +197,12 @@ const Contact = () => {
                       className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-10 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent appearance-none bg-white text-gray-700"
                       required
                     >
-                      <option value="" disabled>Chọn chủ đề</option>
-                      <option value="general">Tư vấn tổng quát</option>
-                      <option value="appointment">Đặt lịch hẹn</option>
-                      <option value="service">Thông tin dịch vụ</option>
-                      <option value="other">Khác</option>
+                      <option value="" disabled>{supportForm.fields.subject.placeholder}</option>
+                      {supportForm.fields.subject.options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                     <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
                   </div>
@@ -226,7 +210,7 @@ const Contact = () => {
                   {/* Notes */}
                   <div className="relative">
                     <textarea
-                      placeholder="Ghi chú thêm..."
+                      placeholder={supportForm.fields.notes.placeholder}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       rows={4}
@@ -239,7 +223,7 @@ const Contact = () => {
                     type="submit"
                     className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg"
                   >
-                    LIÊN HỆ NGAY
+                    {supportForm.buttonText}
                   </button>
                 </form>
               </div>

@@ -1,27 +1,11 @@
 import { useState } from 'react'
 import Container from '../../Container'
 import { FaHeart, FaPlus, FaMinus } from 'react-icons/fa'
+import { faqSectionData } from '../../../data/home/faqSection'
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
-
-  const faqs = [
-    {
-      question: 'Bệnh viện có chấp nhận các loại bảo hiểm y tế nào?',
-      answer:
-        'Bệnh viện của chúng tôi chấp nhận đa số các loại bảo hiểm y tế, bao gồm bảo hiểm y tế tư nhân và các chương trình bảo hiểm y tế công cộng. Tuy nhiên, để đảm bảo rằng bệnh viện chấp nhận bảo hiểm của bạn, hãy liên hệ với chúng tôi hoặc kiểm tra trên trang web của chúng tôi để biết thông tin chi tiết về các loại bảo hiểm được chấp nhận.',
-    },
-    {
-      question: 'Làm thế nào để đặt lịch hẹn tại bệnh viện?',
-      answer:
-        'Bạn có thể đặt lịch hẹn bằng nhiều cách: gọi điện trực tiếp, đặt lịch trực tuyến qua website, hoặc đến trực tiếp bệnh viện. Chúng tôi khuyến khích đặt lịch trước để đảm bảo thời gian phù hợp với bạn.',
-    },
-    {
-      question: 'Bệnh nhân cần chuẩn bị những gì trước khi đến khám bệnh?',
-      answer:
-        'Bệnh nhân nên mang theo giấy tờ tùy thân, thẻ bảo hiểm y tế (nếu có), các kết quả xét nghiệm hoặc hồ sơ y tế trước đó, danh sách thuốc đang sử dụng, và các câu hỏi muốn hỏi bác sĩ.',
-    },
-  ]
+  const { badge, title, faqs } = faqSectionData
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -48,12 +32,12 @@ const FAQSection = () => {
               <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center">
                 <FaHeart className="text-green-600 text-sm sm:text-base" />
               </div>
-              <span className="text-green-500 font-semibold uppercase text-xs sm:text-sm tracking-wide">
-                FAQS
-              </span>
+            <span className="text-green-500 font-semibold uppercase text-xs sm:text-sm tracking-wide">
+              {badge}
+            </span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6 sm:mb-8">
-              Giải Đáp Các Thắc Mắc
+              {title}
             </h2>
 
             <div className="space-y-3 sm:space-y-4">

@@ -1,25 +1,9 @@
 import Container from '../../Container'
 import { FaHeart } from 'react-icons/fa'
+import { doctorsSectionData } from '../../../data/home/doctorsSection'
 
 const DoctorsSection = () => {
-  const doctors = [
-    {
-      name: 'Dr. Emanuel Mac',
-      role: 'Vật lý trị liệu',
-    },
-    {
-      name: 'Dr. Willium Lily',
-      role: 'Khoa tim mạch',
-    },
-    {
-      name: 'Dr. Esabel Macran',
-      role: 'Nha sĩ',
-    },
-    {
-      name: 'Dr. Malcolm Function',
-      role: 'Khoa thần kinh',
-    },
-  ]
+  const { badge, title, doctors } = doctorsSectionData
 
   return (
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
@@ -30,11 +14,11 @@ const DoctorsSection = () => {
               <FaHeart className="text-green-600" />
             </div>
             <span className="text-green-600 font-semibold uppercase text-sm tracking-wide">
-              GIỚI THIỆU ĐỘI NGŨ
+              {badge}
             </span>
           </div>
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900">
-            Bác Sĩ Chuyên Gia
+            {title}
           </h2>
         </div>
 

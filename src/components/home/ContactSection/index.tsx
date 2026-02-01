@@ -1,14 +1,9 @@
 import Container from '../../Container'
 import Button from '../../Button'
+import { contactSectionData } from '../../../data/home/contactSection'
 
 const ContactSection = () => {
-  const workingHours = [
-    { label: 'Thứ hai - Thứ ba', value: '9 sáng - 8 chiều' },
-    { label: 'Thứ tư - Thứ năm', value: '8 sáng - 5 chiều' },
-    { label: 'Thứ sáu', value: '7 sáng - 10 tối' },
-    { label: 'Thứ bảy', value: '10 sáng - 7 tối' },
-    { label: 'Chủ nhật', value: 'Đóng cửa' },
-  ]
+  const { workingHoursTitle, workingHoursDescription, workingHours, contactTitle, form, buttonText } = contactSectionData
 
   return (
     <section className="py-12 lg:py-16 bg-gradient-to-b from-white via-slate-50 to-white">
@@ -32,9 +27,9 @@ const ContactSection = () => {
                 ))}
               </div>
 
-              <h3 className="text-2xl lg:text-3xl font-bold mb-2 relative z-10">Giờ làm việc</h3>
+              <h3 className="text-2xl lg:text-3xl font-bold mb-2 relative z-10">{workingHoursTitle}</h3>
               <p className="text-sm text-blue-100 mb-6 max-w-xs relative z-10">
-                Cung cấp dịch vụ chất lượng vào thời gian làm việc hiệu quả.
+                {workingHoursDescription}
               </p>
 
               <div className="space-y-4 text-sm lg:text-base relative z-10">
@@ -66,16 +61,16 @@ const ContactSection = () => {
 
               {/* Contact form - Right */}
               <div className="flex flex-col">
-                <h3 className="text-xl lg:text-2xl font-bold text-blue-900 mb-4">Liên hệ</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-blue-900 mb-4">{contactTitle}</h3>
                 <div className="space-y-3 flex-1">
                   <input
                     type="text"
-                    placeholder="Họ tên *"
+                    placeholder={form.namePlaceholder}
                     className="w-full rounded-full bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   />
                   <input
                     type="tel"
-                    placeholder="Số điện thoại *"
+                    placeholder={form.phonePlaceholder}
                     className="w-full rounded-full bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
                   />
                   <select
@@ -83,12 +78,13 @@ const ContactSection = () => {
                     defaultValue=""
                   >
                     <option value="" disabled>
-                      Chọn dịch vụ
+                      {form.servicePlaceholder}
                     </option>
-                    <option value="general">Khám tổng quát</option>
-                    <option value="cardio">Tim mạch</option>
-                    <option value="dental">Nha khoa</option>
-                    <option value="other">Khác</option>
+                    {form.serviceOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                   <div className="grid grid-cols-2 gap-3">
                     <input
@@ -104,7 +100,7 @@ const ContactSection = () => {
 
                 <div className="mt-4">
                   <Button color="primary" size="medium" className="w-full justify-center">
-                    ĐẶT LỊCH NGAY
+                    {buttonText}
                   </Button>
                 </div>
               </div>

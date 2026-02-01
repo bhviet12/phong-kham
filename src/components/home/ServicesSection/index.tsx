@@ -1,59 +1,11 @@
 import { Link } from 'react-router-dom'
 import Container from '../../Container'
 import Button from '../../Button'
-import { FaStethoscope, FaHeartbeat, FaXRay, FaPills, FaUserMd, FaHospital } from 'react-icons/fa'
+import { FaStethoscope } from 'react-icons/fa'
+import { servicesSectionData } from '../../../data/home/servicesSection'
 
 const ServicesSection = () => {
-  const services = [
-    {
-      icon: <FaStethoscope className="text-2xl sm:text-3xl" />,
-      title: 'Chuẩn đoán',
-      subtitle: '30+ Bác sĩ',
-      description: 'Dịch vụ khám sức khỏe tổng quát toàn diện',
-    },
-    {
-      icon: <FaHeartbeat className="text-2xl sm:text-3xl" />,
-      title: 'Tim mạch',
-      subtitle: '20+ Bác sĩ',
-      description: 'Chuyên khoa tim mạch với thiết bị hiện đại',
-    },
-    {
-      icon: <FaXRay className="text-2xl sm:text-3xl" />,
-      title: 'Nội soi',
-      subtitle: '18+ Bác sĩ',
-      description: 'Chẩn đoán nội soi an toàn và chính xác',
-    },
-    {
-      icon: <FaPills className="text-2xl sm:text-3xl" />,
-      title: 'Dược phẩm',
-      subtitle: '15+ Dược sĩ',
-      description: 'Cung cấp thuốc chất lượng, đảm bảo an toàn',
-    },
-    {
-      icon: <FaUserMd className="text-2xl sm:text-3xl" />,
-      title: 'Tư vấn y tế',
-      subtitle: '25+ Bác sĩ',
-      description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
-    },
-    {
-      icon: <FaHospital className="text-2xl sm:text-3xl" />,
-      title: 'Cấp cứu 24/7',
-      subtitle: '10+ Bác sĩ',
-      description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
-    },
-    {
-      icon: <FaUserMd className="text-2xl sm:text-3xl" />,
-      title: 'Tư vấn y tế',
-      subtitle: '25+ Bác sĩ',
-      description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
-    },
-    {
-      icon: <FaHospital className="text-2xl sm:text-3xl" />,
-      title: 'Cấp cứu 24/7',
-      subtitle: '10+ Bác sĩ',
-      description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
-    },    
-  ]
+  const { badge, title, description, services, footerText, viewAllText, buttonText } = servicesSectionData
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
@@ -76,26 +28,28 @@ const ServicesSection = () => {
               <FaStethoscope className="text-blue-600" />
             </div>
             <span className="text-blue-600 font-semibold uppercase text-sm tracking-wide">
-              DỊCH VỤ ĐA DẠNG
+              {badge}
             </span>
           </div>
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900 mb-4">
-            Cung Cấp Dịch Vụ
+            {title}
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Chúng tôi cung cấp đa dạng các dịch vụ y tế chất lượng cao để đáp ứng mọi nhu cầu chăm sóc sức khỏe của bạn
+            {description}
           </p>
         </div>
 
         {/* Services grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 relative z-10">
-          {services.map((service, index) => (
+          {services.map((service, index) => {
+            const IconComponent = service.icon
+            return (
             <div
               key={index}
               className="relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 flex flex-col items-center text-center"
             >
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-3 sm:mb-4 shadow-inner">
-                {service.icon}
+                <IconComponent className="text-2xl sm:text-3xl" />
               </div>
               <h3 className="text-sm sm:text-base lg:text-xl font-bold text-blue-900 mb-1">
                 {service.title}
@@ -108,11 +62,12 @@ const ServicesSection = () => {
               </p>
               <div className="mt-auto pt-2">
                 <Button color="secondary" size="small" className="text-xs sm:text-sm">
-                  XEM THÊM
+                  {buttonText}
                 </Button>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* View all services - pill with borders */}
@@ -120,12 +75,12 @@ const ServicesSection = () => {
           <div className="flex items-center justify-center gap-4">
             <div className="hidden sm:block flex-1 h-px bg-gray-200" />
             <div className="inline-flex items-center px-6 py-2 bg-white border border-gray-200 rounded-full shadow-sm text-xs sm:text-sm text-gray-600">
-              <span className="mr-2">Hơn 20 dịch vụ ưu đãi khác...</span>
+              <span className="mr-2">{footerText}</span>
               <Link
                 to="/services"
                 className="text-green-600 font-semibold hover:text-green-700 hover:underline transition-colors"
               >
-                XEM TẤT CẢ DỊCH VỤ
+                {viewAllText}
               </Link>
             </div>
             <div className="hidden sm:block flex-1 h-px bg-gray-200" />

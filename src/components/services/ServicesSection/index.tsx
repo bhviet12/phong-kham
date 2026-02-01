@@ -2,21 +2,8 @@ import { useState } from 'react'
 import Container from '../../Container'
 import Button from '../../Button'
 import { Link } from 'react-router-dom'
-import { 
-  FaPills, 
-  FaTooth, 
-  FaProcedures, 
-  FaBrain, 
-  FaBaby, 
-  FaEye, 
-  FaBone, 
-  FaHeartbeat, 
-  FaSyringe, 
-  FaTint, 
-  FaLungs, 
-  FaDeaf 
-} from 'react-icons/fa'
 import { FaStethoscope } from 'react-icons/fa'
+import { servicesPageData } from '../../../data/pages/servicesPage'
 
 // Generate random positions for decorative icons outside component
 const generateDecorativeIcons = () => {
@@ -31,80 +18,7 @@ const ServicesSection = () => {
   // Generate random positions for decorative icons once on mount
   const [decorativeIcons] = useState(() => generateDecorativeIcons())
 
-  const services = [
-    {
-      slug: 'chuan-doan',
-      icon: <FaPills className="text-2xl" />,
-      title: 'Chuẩn đoán',
-      doctorCount: '30+ Bác sĩ',
-    },
-    {
-      slug: 'nha-khoa',
-      icon: <FaTooth className="text-2xl" />,
-      title: 'Nha khoa',
-      doctorCount: '20+ Bác sĩ',
-    },
-    {
-      slug: 'noi-soi',
-      icon: <FaProcedures className="text-2xl" />,
-      title: 'Nội soi',
-      doctorCount: '20+ Bác sĩ',
-    },
-    {
-      slug: 'than-kinh',
-      icon: <FaBrain className="text-2xl" />,
-      title: 'Thần kinh',
-      doctorCount: '10+ Bác sĩ',
-    },
-    {
-      slug: 'phu-khoa',
-      icon: <FaBaby className="text-2xl" />,
-      title: 'Phụ khoa',
-      doctorCount: '30+ Bác sĩ',
-    },
-    {
-      slug: 'thi-giac',
-      icon: <FaEye className="text-2xl" />,
-      title: 'Thị giác',
-      doctorCount: '24+ Bác sĩ',
-    },
-    {
-      slug: 'xuong-khop',
-      icon: <FaBone className="text-2xl" />,
-      title: 'Xương khớp',
-      doctorCount: '26+ Bác sĩ',
-    },
-    {
-      slug: 'tim-mach',
-      icon: <FaHeartbeat className="text-2xl" />,
-      title: 'Tim mạch',
-      doctorCount: '20+ Bác sĩ',
-    },
-    {
-      slug: 'phau-thuat',
-      icon: <FaSyringe className="text-2xl" />,
-      title: 'Phẫu thuật',
-      doctorCount: '20+ Bác sĩ',
-    },
-    {
-      slug: 'truyen-mau',
-      icon: <FaTint className="text-2xl" />,
-      title: 'Truyền máu',
-      doctorCount: '24+ Bác sĩ',
-    },
-    {
-      slug: 'khoa-phoi',
-      icon: <FaLungs className="text-2xl" />,
-      title: 'Khoa phổi',
-      doctorCount: '26+ Bác sĩ',
-    },
-    {
-      slug: 'thinh-giac',
-      icon: <FaDeaf className="text-2xl" />,
-      title: 'Thính giác',
-      doctorCount: '20+ Bác sĩ',
-    },
-  ]
+  const { badge, title, services, banner, buttonText } = servicesPageData
 
   return (
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
@@ -127,17 +41,19 @@ const ServicesSection = () => {
               <FaStethoscope className="text-blue-500 text-sm" />
             </div>
             <span className="text-blue-500 font-semibold uppercase text-sm tracking-wide">
-              DỊCH VỤ ĐA DẠNG
+              {badge}
             </span>
           </div>
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900 mb-4 leading-tight">
-            Cung Cấp Dịch Vụ Chuyên Sâu, Chất Lượng
+            {title}
           </h2>
         </div>
 
         {/* Services grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 relative z-10">
-          {services.map((service, index) => (
+          {services.map((service, index) => {
+            const IconComponent = service.icon
+            return (
             <Link
               key={index}
               to={`/service/${service.slug}`}
@@ -145,7 +61,7 @@ const ServicesSection = () => {
             >
               {/* Icon */}
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center mb-4 text-green-600 group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
+                <IconComponent className="text-2xl" />
               </div>
 
               {/* Title */}
@@ -160,10 +76,11 @@ const ServicesSection = () => {
 
               {/* Button */}
               <div className="w-full bg-gradient-to-r from-blue-400 to-blue-500 group-hover:from-blue-500 group-hover:to-blue-600 text-white font-semibold py-2.5 px-4 rounded-full transition-all duration-300 shadow-md group-hover:shadow-lg text-center">
-                XEM THÊM
+                {buttonText}
               </div>
             </Link>
-          ))}
+            )
+          })}
         </div>
       </Container>
 
@@ -216,11 +133,11 @@ const ServicesSection = () => {
             <div className="relative z-10 p-8 lg:p-12">
               <div className="text-white max-w-2xl">
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 lg:mb-8 leading-tight">
-                  Chúng Tôi Rất Vui Được Cung Cấp Cho Bạn Sức Khỏe.
+                  {banner.title}
                 </h2>
                 <Link to="/contact">
                   <Button color="secondary" size="large">
-                    LIÊN HỆ NGAY
+                    {banner.buttonText}
                   </Button>
                 </Link>
               </div>

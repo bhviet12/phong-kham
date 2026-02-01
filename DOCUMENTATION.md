@@ -9,6 +9,7 @@
 3. [Cấu trúc website](#cấu-trúc-website)
 4. [Báo cáo SEO](#báo-cáo-seo)
 5. [Tùy chọn Font chữ](#tùy-chọn-font-chữ)
+6. [Quản lý code với GitHub và GitLab](#quản-lý-code-với-github-và-gitlab)
 
 ---
 
@@ -534,6 +535,167 @@ body {
 - Đảm bảo font hỗ trợ tiếng Việt (có dấu)
 - Kiểm tra hiệu suất: font càng nhiều weights càng nặng
 - Test trên nhiều thiết bị và trình duyệt
+
+---
+
+## 🔄 QUẢN LÝ CODE VỚI GITHUB VÀ GITLAB
+
+### 📋 Tổng quan
+
+Repository hiện tại đã được cấu hình để quản lý code trên cả **GitHub** và **GitLab**:
+- **GitHub** (`origin`): `https://github.com/bhviet12/phong-kham.git`
+- **GitLab** (`gitlab`): `git@gitlab.com:bhviet1510/phong-kham-da-lieu.git`
+
+### 🚀 Cách sử dụng nhanh
+
+#### Push code lên cả hai nền tảng
+
+```bash
+# Cách 1: Push riêng lẻ
+git push origin main    # GitHub
+git push gitlab main    # GitLab
+
+# Cách 2: Push cùng lúc (khuyến nghị)
+git push origin main && git push gitlab main
+```
+
+#### Workflow hàng ngày
+
+```bash
+# 1. Commit code
+git add .
+git commit -m "Mô tả thay đổi"
+
+# 2. Push lên cả hai nền tảng
+git push origin main && git push gitlab main
+```
+
+#### Pull và đồng bộ
+
+```bash
+# Pull từ nền tảng chính (ví dụ: GitHub)
+git pull origin main
+
+# Sau đó push lại lên cả hai để đồng bộ
+git push origin main && git push gitlab main
+```
+
+### ⚙️ Thiết lập ban đầu (Đã hoàn thành)
+
+#### 1. Thêm GitLab remote
+
+```bash
+# Thêm GitLab remote với tên "gitlab"
+git remote add gitlab git@gitlab.com:bhviet1510/phong-kham-da-lieu.git
+
+# Hoặc dùng HTTPS:
+git remote add gitlab https://gitlab.com/bhviet1510/phong-kham-da-lieu.git
+```
+
+#### 2. Kiểm tra remote
+
+```bash
+git remote -v
+```
+
+Kết quả:
+```
+gitlab  git@gitlab.com:bhviet1510/phong-kham-da-lieu.git (fetch)
+gitlab  git@gitlab.com:bhviet1510/phong-kham-da-lieu.git (push)
+origin  https://github.com/bhviet12/phong-kham.git (fetch)
+origin  https://github.com/bhviet12/phong-kham.git (push)
+```
+
+### 🔧 Tùy chọn nâng cao
+
+#### Tạo alias để push nhanh
+
+```bash
+# Thêm alias
+git config alias.pushall '!git push origin main && git push gitlab main'
+
+# Sau đó chỉ cần chạy:
+git pushall
+```
+
+#### Push tất cả branches
+
+```bash
+git push origin --all
+git push gitlab --all
+```
+
+### ⚠️ Xử lý lỗi khi import GitLab
+
+#### Lỗi: Token không có quyền `read:org`
+
+**Giải pháp 1: Tạo GitHub Personal Access Token (Classic) mới**
+
+1. GitHub → Settings → Developer settings → Personal access tokens → **Tokens (classic)**
+2. Generate new token (classic)
+3. Chọn quyền:
+   - ✅ `repo` - Full control
+   - ✅ `read:org` - **QUAN TRỌNG!**
+   - ✅ `read:user`
+4. Copy token và cập nhật trong GitLab
+
+**Giải pháp 2: Bỏ chọn "Nhập khẩu cộng tác viên"**
+
+Nếu không cần import collaborators, bỏ chọn checkbox này khi import.
+
+**Giải pháp 3: Import thủ công (Đã thực hiện)**
+
+Tạo repository trống trên GitLab, sau đó push code lên:
+```bash
+git remote add gitlab git@gitlab.com:bhviet1510/phong-kham-da-lieu.git
+git push -u gitlab main
+```
+
+### 📝 Lưu ý quan trọng
+
+1. **Đồng bộ code**: Luôn đảm bảo code trên cả hai nền tảng giống nhau
+2. **Nền tảng chính**: GitHub là nền tảng chính, GitLab là bản sao
+3. **Merge conflicts**: Giải quyết trên GitHub trước, sau đó push lên GitLab
+4. **Protected branches**: GitLab có thể bảo vệ branch `main`, không cho force push
+
+### 🛠️ Các lệnh hữu ích
+
+#### Kiểm tra remote
+
+```bash
+# Xem tất cả remote
+git remote -v
+
+# Xem chi tiết một remote
+git remote show origin
+git remote show gitlab
+```
+
+#### Xóa remote (nếu cần)
+
+```bash
+# Xóa GitLab remote
+git remote remove gitlab
+```
+
+#### Đổi URL remote
+
+```bash
+# Đổi từ HTTPS sang SSH
+git remote set-url gitlab git@gitlab.com:bhviet1510/phong-kham-da-lieu.git
+
+# Đổi từ SSH sang HTTPS
+git remote set-url gitlab https://gitlab.com/bhviet1510/phong-kham-da-lieu.git
+```
+
+### ✅ Trạng thái hiện tại
+
+- ✅ GitHub remote đã được cấu hình
+- ✅ GitLab remote đã được cấu hình
+- ✅ Code đã được push lên cả hai nền tảng
+- ✅ Branch `main` đã được set up tracking
+
+**Sẵn sàng sử dụng!** 🎉
 
 ---
 

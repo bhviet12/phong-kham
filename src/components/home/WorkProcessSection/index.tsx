@@ -1,33 +1,9 @@
 import Container from '../../Container'
 import { FaHeart } from 'react-icons/fa'
+import { workProcessSectionData } from '../../../data/home/workProcessSection'
 
 const WorkProcessSection = () => {
-  const steps = [
-    {
-      number: '01',
-      title: 'Đăng ký bệnh nhân',
-      description: 'Người bệnh cung cấp thông tin cá nhân để bệnh viện tạo hồ sơ và xếp lịch khám cho người bệnh',
-      color: 'green',
-    },
-    {
-      number: '02',
-      title: 'Kiểm khám',
-      description: 'Bác sĩ hoặc nhân viên y tế sẽ tiến hành khám và chẩn đoán tình trạng sức khỏe của người bệnh.',
-      color: 'blue',
-    },
-    {
-      number: '03',
-      title: 'Điều trị và chăm sóc',
-      description: 'Điều trị có thể bao gồm sử dụng thuốc, phẫu thuật, điều trị tại chỗ, hay các biện pháp kiểu mẫu khác.',
-      color: 'green',
-    },
-    {
-      number: '04',
-      title: 'Theo dõi sức khỏe',
-      description: 'Quá trình xuất viện bao gồm nhận lại các báo cáo xét nghiệm, tư vấn và theo dõi sức khỏe',
-      color: 'blue',
-    },
-  ]
+  const { badge, title, steps } = workProcessSectionData
 
   return (
     <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
@@ -49,11 +25,11 @@ const WorkProcessSection = () => {
               <FaHeart className="text-blue-600 text-sm sm:text-base" />
             </div>
             <span className="text-blue-600 font-semibold uppercase text-xs sm:text-sm tracking-wide">
-              AN TÂM MỌI LÚC
+              {badge}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-900">
-            Quy Trình Làm Việc Hiệu Quả
+            {title}
           </h2>
         </div>
 
