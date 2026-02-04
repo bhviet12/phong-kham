@@ -42,7 +42,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-navy-dark text-white relative overflow-hidden">
+    <footer className="bg-primary text-white relative overflow-hidden">
       <Container>
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 py-12 lg:py-16 relative z-10">
@@ -54,7 +54,7 @@ const Footer = () => {
             </Link>
 
             {/* Description */}
-            <p className="text-sm text-white/90 leading-relaxed">
+            <p className="text-sm text-white/90 leading-relaxed font-body">
               Phòng khám Da liễu Thẩm mỹ T&D tự hào là địa chỉ uy tín trong lĩnh vực điều trị và chăm sóc da. Chúng tôi cam kết mang lại vẻ đẹp tự nhiên và an toàn cho khách hàng.
             </p>
 
@@ -62,14 +62,14 @@ const Footer = () => {
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-navy-dark border-2 border-blue-sky flex items-center justify-center text-white hover:bg-blue-sky/20 transition-all"
+                className="w-10 h-10 rounded-full bg-primary border-2 border-accent flex items-center justify-center text-white hover:bg-accent/20 transition-all"
                 aria-label="Website"
               >
                 <FaGlobe className="text-sm" />
               </a>
               <a
                 href="mailto:info@tdclinic.com"
-                className="w-10 h-10 rounded-full bg-navy-dark border-2 border-blue-sky flex items-center justify-center text-white hover:bg-blue-sky/20 transition-all"
+                className="w-10 h-10 rounded-full bg-primary border-2 border-accent flex items-center justify-center text-white hover:bg-accent/20 transition-all"
                 aria-label="Email"
               >
                 <FaEnvelope className="text-sm" />
@@ -79,7 +79,7 @@ const Footer = () => {
 
           {/* Column 2: LIÊN KẾT */}
           <div>
-            <h4 className="text-lg font-bold font-serif text-cream-pale mb-4">
+            <h4 className="text-lg font-bold font-display text-accent mb-4">
               LIÊN KẾT
             </h4>
             <ul className="space-y-3">
@@ -87,7 +87,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-sm text-white hover:text-cream-pale transition-colors"
+                    className="text-sm text-white hover:text-accent transition-colors font-body"
                   >
                     {link.text}
                   </Link>
@@ -98,7 +98,7 @@ const Footer = () => {
 
           {/* Column 3: DỊCH VỤ NỔI BẬT */}
           <div>
-            <h4 className="text-lg font-bold font-serif text-cream-pale mb-4">
+            <h4 className="text-lg font-bold font-display text-accent mb-4">
               DỊCH VỤ NỔI BẬT
             </h4>
             <ul className="space-y-3">
@@ -106,7 +106,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={service.path}
-                    className="text-sm text-white hover:text-cream-pale transition-colors"
+                    className="text-sm text-white hover:text-accent transition-colors font-body"
                   >
                     {service.text}
                   </Link>
@@ -117,30 +117,30 @@ const Footer = () => {
 
           {/* Column 4: LIÊN HỆ */}
           <div>
-            <h4 className="text-lg font-bold font-serif text-cream-pale mb-4">
+            <h4 className="text-lg font-bold font-display text-accent mb-4">
               LIÊN HỆ
             </h4>
             <div className="space-y-3">
               {/* Location */}
               <div className="flex items-start gap-3">
-                <FaLocationDot className="text-white mt-1 flex-shrink-0 text-base" />
-                <p className="text-sm text-white">
+                <FaLocationDot className="text-accent mt-1 flex-shrink-0 text-base" />
+                <p className="text-sm text-white font-body">
                   123 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh
                 </p>
               </div>
 
               {/* Hotline */}
               <div className="flex items-center gap-3">
-                <FaPhoneAlt className="text-white flex-shrink-0 text-base" />
-                <a href="tel:19001234" className="text-sm text-white hover:text-cream-pale transition-colors">
+                <FaPhoneAlt className="text-accent flex-shrink-0 text-base" />
+                <a href="tel:19001234" className="text-sm text-white hover:text-accent transition-colors font-body">
                   Hotline: 1900 1234
                 </a>
               </div>
 
               {/* Working Hours */}
               <div className="flex items-center gap-3">
-                <FaClock className="text-white flex-shrink-0 text-base" />
-                <p className="text-sm text-white">
+                <FaClock className="text-accent flex-shrink-0 text-base" />
+                <p className="text-sm text-white font-body">
                   Thứ 2 - Chủ Nhật: 9:00 - 20:00
                 </p>
               </div>
@@ -154,7 +154,7 @@ const Footer = () => {
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-center py-4 gap-4">
             {/* Copyright */}
-            <p className="text-xs sm:text-sm text-white/80 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-white/80 text-center sm:text-left font-body">
               © 2023 T&D Aesthetic Clinic. All rights reserved.
             </p>
 
@@ -162,13 +162,13 @@ const Footer = () => {
             <div className="flex items-center gap-4">
               <Link
                 to="/privacy"
-                className="text-xs sm:text-sm text-white/80 hover:text-cream-pale transition-colors"
+                className="text-xs sm:text-sm text-white/80 hover:text-accent transition-colors font-body"
               >
                 Chính sách bảo mật
               </Link>
               <Link
                 to="/terms"
-                className="text-xs sm:text-sm text-white/80 hover:text-cream-pale transition-colors"
+                className="text-xs sm:text-sm text-white/80 hover:text-accent transition-colors font-body"
               >
                 Điều khoản sử dụng
               </Link>
@@ -181,7 +181,7 @@ const Footer = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-blue-royal hover:bg-blue-royal/90 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 text-sm sm:text-base"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-accent hover:bg-accent/90 text-primary rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-50 text-sm sm:text-base"
           aria-label="Scroll to top"
         >
           <FaArrowUp />

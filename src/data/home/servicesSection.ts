@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons'
-import { FaStethoscope, FaHeartbeat, FaXRay, FaPills, FaUserMd, FaHospital } from 'react-icons/fa'
+import { FaMagic, FaSun, FaSyringe } from 'react-icons/fa'
+import { FaDroplet, FaFaceSmile, FaSpa } from 'react-icons/fa6'
 
 export interface Service {
   icon: IconType
@@ -9,57 +10,45 @@ export interface Service {
 }
 
 export const servicesSectionData = {
-  badge: "DỊCH VỤ ĐA DẠNG",
-  title: "Cung Cấp Dịch Vụ",
+  badge: "Dịch vụ chuyên sâu",
+  title: "Giải pháp toàn diện cho làn da",
   description: "Chúng tôi cung cấp đa dạng các dịch vụ y tế chất lượng cao để đáp ứng mọi nhu cầu chăm sóc sức khỏe của bạn",
   services: [
     {
-      icon: FaStethoscope,
-      title: 'Chuẩn đoán',
-      subtitle: '30+ Bác sĩ',
-      description: 'Dịch vụ khám sức khỏe tổng quát toàn diện',
+      icon: FaDroplet,
+      title: 'Trị mụn & Thâm',
+      subtitle: '',
+      description: 'Phác đồ điều trị mụn y khoa kết hợp công nghệ ánh sáng sinh học, xóa tan nỗi lo mụn thâm.',
     },
     {
-      icon: FaHeartbeat,
-      title: 'Tim mạch',
-      subtitle: '20+ Bác sĩ',
-      description: 'Chuyên khoa tim mạch với thiết bị hiện đại',
+      icon: FaMagic,
+      title: 'Trẻ hóa da',
+      subtitle: '',
+      description: 'Công nghệ nâng cơ Hifu, Thermage giúp xóa nhăn, căng bóng và trẻ hóa làn da tức thì.',
     },
     {
-      icon: FaXRay,
-      title: 'Nội soi',
-      subtitle: '18+ Bác sĩ',
-      description: 'Chẩn đoán nội soi an toàn và chính xác',
+      icon: FaFaceSmile,
+      title: 'Điều trị Sẹo',
+      subtitle: '',
+      description: 'Giải pháp cắt đáy sẹo, laser CO2 Fractional lấp đầy sẹo rỗ, trả lại làn da mịn màng.',
     },
     {
-      icon: FaPills,
-      title: 'Dược phẩm',
-      subtitle: '15+ Dược sĩ',
-      description: 'Cung cấp thuốc chất lượng, đảm bảo an toàn',
+      icon: FaSpa,
+      title: 'Chăm sóc da',
+      subtitle: '',
+      description: 'Liệu trình chăm sóc da chuyên sâu, thư giãn, cấp ẩm và phục hồi làn da hư tổn.',
     },
     {
-      icon: FaUserMd,
-      title: 'Tư vấn y tế',
-      subtitle: '25+ Bác sĩ',
-      description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
+      icon: FaSun,
+      title: 'Trị nám & Tàn nhang',
+      subtitle: '',
+      description: 'Công nghệ laser Q-Switch, IPL xóa bỏ nám, tàn nhang hiệu quả, an toàn, không để lại thâm.',
     },
     {
-      icon: FaHospital,
-      title: 'Cấp cứu 24/7',
-      subtitle: '10+ Bác sĩ',
-      description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
-    },
-    {
-      icon: FaUserMd,
-      title: 'Tư vấn y tế',
-      subtitle: '25+ Bác sĩ',
-      description: 'Tư vấn chuyên sâu từ đội ngũ bác sĩ giàu kinh nghiệm',
-    },
-    {
-      icon: FaHospital,
-      title: 'Cấp cứu 24/7',
-      subtitle: '10+ Bác sĩ',
-      description: 'Dịch vụ cấp cứu khẩn cấp 24 giờ',
+      icon: FaSyringe,
+      title: 'Tiêm Filler & Botox',
+      subtitle: '',
+      description: 'Làm đầy nếp nhăn, tạo đường nét thanh tú với Filler và Botox chuẩn y khoa Hàn Quốc.',
     },
   ] as Service[],
   footerText: "Hơn 20 dịch vụ ưu đãi khác...",

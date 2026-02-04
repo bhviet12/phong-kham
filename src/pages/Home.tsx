@@ -6,13 +6,15 @@ import MainLayout from '../Layouts/MainLayout'
 const ContactSection = lazy(() => import('../components/home/ContactSection'))
 const HeroBanner = lazy(() => import('../components/home/HeroBanner'))
 const AboutSection = lazy(() => import('../components/home/AboutSection'))
+const StatsSection = lazy(() => import('../components/home/StatsSection'))
 const ServicesSection = lazy(() => import('../components/home/ServicesSection'))
-const HealthcareSection = lazy(() => import('../components/home/HealthcareSection'))
-const DoctorsSection = lazy(() => import('../components/home/DoctorsSection'))
-const WorkProcessSection = lazy(() => import('../components/home/WorkProcessSection'))
-const FAQSection = lazy(() => import('../components/home/FAQSection'))
+// Comment các section không dùng tạm thời
+// const HealthcareSection = lazy(() => import('../components/home/HealthcareSection'))
+// const DoctorsSection = lazy(() => import('../components/home/DoctorsSection'))
+// const WorkProcessSection = lazy(() => import('../components/home/WorkProcessSection'))
+// const FAQSection = lazy(() => import('../components/home/FAQSection'))
 const ReviewsSection = lazy(() => import('../components/home/ReviewsSection'))
-const NewsSection = lazy(() => import('../components/home/NewsSection'))
+// const NewsSection = lazy(() => import('../components/home/NewsSection'))
 
 const LoadingFallback = () => (
   <div className="h-64 flex items-center justify-center">
@@ -60,29 +62,33 @@ const Home = () => {
         <AboutSection />
       </Suspense>
       <Suspense fallback={<LoadingFallback />}>
+        <StatsSection />
+      </Suspense>
+      <Suspense fallback={<LoadingFallback />}>
         <ServicesSection />
       </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
+      {/* Comment các section không cần thiết tạm thời */}
+      {/* <Suspense fallback={<LoadingFallback />}>
         <HealthcareSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<LoadingFallback />}>
         <DoctorsSection />
-      </Suspense>
+      </Suspense> */}
+      <Suspense fallback={<LoadingFallback />}>
+        <ReviewsSection />
+      </Suspense>     
       <Suspense fallback={<LoadingFallback />}>
         <ContactSection />
       </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
+      {/* <Suspense fallback={<LoadingFallback />}>
         <WorkProcessSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<LoadingFallback />}>
         <FAQSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
-        <ReviewsSection />
-      </Suspense>
-      <Suspense fallback={<LoadingFallback />}>
+      </Suspense> */}
+      {/* <Suspense fallback={<LoadingFallback />}>
         <NewsSection />
-      </Suspense>
+      </Suspense> */}
     </MainLayout>
   )
 }

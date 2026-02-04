@@ -1,36 +1,19 @@
 // Theme configuration based on design board
 export const theme = {
   colors: {
-    // Primary colors from design board
-    navy: {
-      dark: '#1e3a5f',      // Dark navy blue (main color)
-      DEFAULT: '#1e3a5f',
-    },
-    blue: {
-      royal: '#2563eb',      // Medium royal blue
-      sky: '#60a5fa',        // Light sky blue
-      DEFAULT: '#2563eb',
-    },
-    cream: {
-      pale: '#fef3c7',       // Pale yellow/light cream
-      light: '#fef9e7',      // Very light beige/off-white
-      DEFAULT: '#fef3c7',
-    },
-    // Additional colors for UI
-    white: '#ffffff',
-    black: '#000000',
+    primary: '#021E63',          // Deep Navy – màu chủ đạo
+    accent: '#F5D67B',           // Warm Gold – điểm nhấn luxury
+    'background-light': '#FFFDF0', // Ivory – nền chính bên trong
+    'background-soft': '#F9F7F2',  // Beige nhạt – nền section
+    'background-dark': '#0B1120',
+    'surface-light': '#FFFFFF',   // Card
+    'surface-dark': '#162032',
+    'text-light': '#333333',
+    'text-dark': '#E5E7EB',
+    body: '#F2F2F0',              // Background ngoài
   },
   fonts: {
-    serif: ['EB Garamond', 'serif'],
-    sans: ['Optima', 'Optima Nova', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+    display: ['Playfair Display', 'serif'],
+    body: ['Lato', 'sans-serif'],
   }
-}
-
-// Export color values for Tailwind
-export const tailwindColors = {
-  'navy-dark': theme.colors.navy.dark,
-  'blue-royal': theme.colors.blue.royal,
-  'blue-sky': theme.colors.blue.sky,
-  'cream-pale': theme.colors.cream.pale,
-  'cream-light': theme.colors.cream.light,
 }

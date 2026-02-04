@@ -1,106 +1,48 @@
-import Button from '../../Button'
-import { Heart } from 'lucide-react'
-import { aboutSectionData } from '../../../data/home/aboutSection'
+import { Link } from 'react-router-dom'
+import { FaCheckCircle } from 'react-icons/fa'
 
 const AboutSection = () => {
-  const { tag, title, description, features, buttonText, testimonial } = aboutSectionData
-
   return (
-    <section className="w-full py-20 lg:py-32 bg-gradient-to-b from-white via-cream-light to-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-end">
-          
-          {/* Left Column - Stacked Images */}
-          <div className="space-y-4 lg:space-y-5">
-            {/* Top image */}
-            <div className="relative w-full aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <p className="text-sm mb-2">👨‍⚕️ 👩‍⚕️</p>
-                  <p className="text-xs">Image: Doctors reviewing tablet</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-teal-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            
-            {/* Bottom image with testimonial */}
-            <div className="relative w-full aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-br from-cream-pale to-blue-sky flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <p className="text-sm mb-2">👩‍⚕️ 👵</p>
-                  <p className="text-xs">Image: Nurse taking blood pressure</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-navy-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              {/* Testimonial overlay */}
-              <div className="absolute bottom-4 left-4 right-4 bg-navy-dark rounded-lg p-4 shadow-2xl text-white">
-                <h4 className="font-bold text-white mb-2 text-base font-serif">{testimonial.name}</h4>
-                <p className="text-sm text-cream-pale mb-3 leading-relaxed">
-                  {testimonial.quote}
-                </p>
-                <div className="flex items-center gap-1 mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-cream-pale text-sm">★</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 text-cream-pale">
-                  <span className="text-sm">📞</span>
-                  <span className="text-sm font-medium">{testimonial.phone}</span>
-                </div>
-              </div>
-            </div>
+    <section className="py-20 relative overflow-hidden" id="about">
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none bg-pattern-floral"></div>
+      <div className="px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="relative order-2 md:order-1 group">
+            <div className="absolute inset-0 border border-primary transform translate-x-4 translate-y-4 z-0 transition-transform duration-500 group-hover:translate-x-6 group-hover:translate-y-6"></div>
+            <img 
+              alt="Doctor consulting patient" 
+              className="relative z-10 w-full h-[450px] object-cover filter grayscale group-hover:grayscale-0 transition duration-1000 shadow-lg" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh8zCOSSrofklMOB0dXTFntuYczpAp9GK8SqiJC9Pf83wtDpxFb5n6PugelpGiN8GWxuJkygSwD1QVB3P1qozN5qEHOzxF9k3qnI33_joZR6jzYq-N0wWK5DfuWfg5afSISvd4wwblID45Mxb_2M56A9Yh660pfGu9FhcIt26ms7Rttq1WSO1l9RIfVy10zvjBKWlkUZBStSN_A895fR3OI5eKRo7RLRqhu-sA9o5XTOhxMYGckr7XrS_NAg_B4zemwgDUhKo-qGM"
+            />
           </div>
-
-          {/* Center Column - Main Image */}
-          <div className="relative w-full h-96 lg:h-[560px] rounded-3xl overflow-hidden shadow-3xl group">
-            <div className="absolute inset-0 bg-gradient-to-br from-cream-pale to-blue-sky flex items-center justify-center">
-              <div className="text-center text-gray-400">
-                <p className="text-lg mb-2">🏥</p>
-                <p className="text-sm">Main Image: Medical facility</p>
-              </div>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-dark/20" />
-          </div>
-
-          {/* Right Column - Content positioned at bottom */}
-          <div className="space-y-6 lg:space-y-5">
-            {/* Tag */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-cream-pale border border-navy-dark rounded-full">
-              <div className="w-2 h-2 bg-navy-dark rounded-full" />
-              <span className="text-xs font-bold text-navy-dark uppercase tracking-widest font-serif">
-                {tag}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h2 className="text-3xl lg:text-4xl font-bold text-navy-dark leading-tight font-serif">
-              {title}
+          <div className="order-1 md:order-2">
+            <h3 className="text-accent font-bold tracking-[0.2em] uppercase text-xs mb-4 font-body">Về chúng tôi</h3>
+            <h2 className="font-display text-4xl lg:text-5xl text-primary font-medium mb-8 leading-tight">
+              Khoa học làn da <br/> <span className="italic font-normal">kết hợp</span> nghệ thuật
             </h2>
-
-            {/* Description */}
-            <p className="text-base text-gray-700 leading-relaxed">
-              {description}
+            <p className="text-gray-600 mb-8 leading-loose font-light text-justify font-body">
+              Tại T&D, chúng tôi tin rằng vẻ đẹp thực sự bắt nguồn từ một làn da khỏe mạnh. Với đội ngũ bác sĩ chuyên khoa da liễu hàng đầu và công nghệ tiên tiến nhất từ Hàn Quốc, chúng tôi cam kết mang lại hiệu quả điều trị tối ưu.
             </p>
-
-            {/* Features Grid - 2 Columns */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-2.5 group">
-                  <Heart size={16} className="text-navy-dark fill-navy-dark flex-shrink-0 mt-0.5 group-hover:scale-125 transition-transform" />
-                  <span className="text-sm font-semibold text-gray-800 group-hover:text-navy-dark transition-colors">
-                    {feature.label}
-                  </span>
-                </div>
-              ))}
+            <div className="space-y-4 mb-10">
+              <div className="flex items-center text-primary group cursor-default">
+                <FaCheckCircle className="text-accent mr-4 text-xl group-hover:scale-110 transition" />
+                <span className="font-medium text-sm font-body">Đội ngũ bác sĩ da liễu giàu kinh nghiệm</span>
+              </div>
+              <div className="flex items-center text-primary group cursor-default">
+                <FaCheckCircle className="text-accent mr-4 text-xl group-hover:scale-110 transition" />
+                <span className="font-medium text-sm font-body">Công nghệ FDA & KFDA chứng nhận</span>
+              </div>
+              <div className="flex items-center text-primary group cursor-default">
+                <FaCheckCircle className="text-accent mr-4 text-xl group-hover:scale-110 transition" />
+                <span className="font-medium text-sm font-body">Không gian thư giãn chuẩn 5 sao</span>
+              </div>
             </div>
-
-            {/* Button */}
-            <div className="mt-4">
-              <Button color="primary" size="large">
-                {buttonText}
-              </Button>
-            </div>
+            <Link 
+              to="/about" 
+              className="inline-flex items-center text-primary border-b border-primary pb-1 font-bold text-sm uppercase tracking-widest hover:text-accent hover:border-accent transition group font-body"
+            >
+              Tìm hiểu thêm <span className="text-sm ml-2 group-hover:translate-x-1 transition">→</span>
+            </Link>
           </div>
         </div>
       </div>

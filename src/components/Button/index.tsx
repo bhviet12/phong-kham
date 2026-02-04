@@ -3,10 +3,11 @@ import type { FC, ReactNode, CSSProperties } from "react"
 import type { ButtonProps } from "antd"
 import { useCallback, useMemo } from "react"
 
-interface ColorButtonProps extends Omit<ButtonProps, "color" | "size"> {
+interface ColorButtonProps extends Omit<ButtonProps, "color" | "size" | "shape"> {
   children: ReactNode
-  color?: "primary" | "secondary" | "third"
+  color?: "primary" | "accent" | "secondary" | "outline" | "third" | "form" // secondary và third = backward compatibility
   size?: "small" | "medium" | "large"
+  shape?: "rounded" | "square" // rounded = rounded-full, square = rounded-lg
   leftIcon?: ReactNode
   rightIcon?: ReactNode
 }
@@ -15,6 +16,7 @@ const ColorButton: FC<ColorButtonProps> = ({
   children, 
   color = "primary", 
   size = "medium",
+  shape = "rounded",
   type,
   className = "",
   style,
@@ -24,67 +26,96 @@ const ColorButton: FC<ColorButtonProps> = ({
   rightIcon,
   ...props 
 }) => {
+  // Normalize color prop (backward compatibility)
+  const normalizedColor = useMemo(() => {
+    if (color === "secondary") return "accent"
+    if (color === "third") return "outline"
+    return color || "primary"
+  }, [color])
+
   // Configs - memoized to avoid recreating on every render
   const configs = useMemo(() => ({
     size: {
-      small: { padding: "4px 16px", fontSize: "14px", height: "32px" },
-      medium: { padding: "8px 24px", fontSize: "16px", height: "40px" },
-      large: { padding: "12px 32px", fontSize: "18px", height: "48px" },
+      small: { padding: "6px 24px", fontSize: "14px", height: "auto" }, // px-6 py-2.5
+      medium: { padding: "8px 32px", fontSize: "16px", height: "auto" }, // px-8 py-4
+      large: { padding: "12px 40px", fontSize: "18px", height: "auto" },
     },
     style: {
       primary: {
-        background: "#1e3a5f", // Dark navy blue
+        background: "#021E63", // Primary - Deep Navy
         border: "none",
-        borderRadius: "50px",
+        borderRadius: shape === "rounded" ? "50px" : "8px",
         color: "#ffffff",
-        boxShadow: "0 2px 6px rgba(30, 58, 95, 0.25), 0 -1px 3px rgba(30, 58, 95, 0.15)",
-        fontFamily: "'EB Garamond', serif",
-        fontWeight: 400,
+        boxShadow: "0 4px 6px -1px rgba(2, 30, 99, 0.3), 0 2px 4px -1px rgba(2, 30, 99, 0.2)",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 700,
       },
-      secondary: {
-        background: "#2563eb", // Royal blue
+      accent: {
+        background: "#F5D67B", // Accent - Warm Gold
         border: "none",
-        borderRadius: "50px",
-        color: "#ffffff",
-        boxShadow: "0 2px 6px rgba(37, 99, 235, 0.25), 0 -1px 3px rgba(37, 99, 235, 0.15)",
-        fontFamily: "'EB Garamond', serif",
-        fontWeight: 400,
+        borderRadius: shape === "rounded" ? "50px" : "8px",
+        color: "#021E63",
+        boxShadow: "0 10px 15px -3px rgba(245, 214, 123, 0.3), 0 4px 6px -2px rgba(245, 214, 123, 0.2)",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 700,
       },
-      third: {
-        background: "#fef3c7", // Pale cream
-        border: "1px solid #1e3a5f",
-        borderRadius: "50px",
-        color: "#1e3a5f",
-        fontWeight: 400,
-        boxShadow: "0 2px 6px rgba(30, 58, 95, 0.08), 0 -1px 3px rgba(30, 58, 95, 0.04)",
-        fontFamily: "'EB Garamond', serif",
+      outline: {
+        background: "transparent", // Outline button
+        border: "2px solid #ffffff",
+        borderRadius: shape === "rounded" ? "50px" : "8px",
+        color: "#ffffff",
+        fontWeight: 600,
+        boxShadow: "none",
+        fontFamily: "'Lato', sans-serif",
+      },
+      form: {
+        background: "#021E63", // Form button - Primary với rounded-lg
+        border: "none",
+        borderRadius: "8px", // rounded-lg
+        color: "#ffffff",
+        boxShadow: "0 4px 6px -1px rgba(2, 30, 99, 0.3), 0 2px 4px -1px rgba(2, 30, 99, 0.2)",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 700,
       }
     },
     hover: {
       primary: { 
-        background: "#1a2f4d",
-        boxShadow: "0 4px 10px rgba(30, 58, 95, 0.35), 0 -2px 5px rgba(30, 58, 95, 0.25)"
+        background: "rgba(2, 30, 99, 0.9)", // hover:bg-opacity-90
+        boxShadow: "0 10px 15px -3px rgba(2, 30, 99, 0.4), 0 4px 6px -2px rgba(2, 30, 99, 0.3)",
+        color: undefined,
+        transform: undefined
       },
-      secondary: { 
-        background: "#1d4ed8",
-        boxShadow: "0 4px 10px rgba(37, 99, 235, 0.35), 0 -2px 5px rgba(37, 99, 235, 0.25)"
+      accent: { 
+        background: "#ffffff",
+        color: "#021E63",
+        transform: "scale(1.05)", // hover:scale-105
+        boxShadow: "0 20px 25px -5px rgba(245, 214, 123, 0.4), 0 10px 10px -5px rgba(245, 214, 123, 0.2)"
       },
-      third: { 
-        background: "#fde68a",
-        boxShadow: "0 4px 10px rgba(30, 58, 95, 0.12), 0 -2px 5px rgba(30, 58, 95, 0.06)"
+      outline: { 
+        background: "#ffffff",
+        color: "#021E63",
+        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        transform: undefined
+      },
+      form: {
+        background: "rgba(2, 30, 99, 0.9)", // hover:bg-primary/90
+        transform: "translateY(-4px)", // hover:-translate-y-1
+        boxShadow: "0 10px 15px -3px rgba(2, 30, 99, 0.4), 0 4px 6px -2px rgba(2, 30, 99, 0.3)",
+        color: undefined
       }
     },
     disabled: {
-      primary: { background: "linear-gradient(to right, #9ca3af, #6b7280)", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
-      secondary: { background: "linear-gradient(to right, #9ca3af, #6b7280)", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
-      third: { background: "#f3f4f6", color: "#9ca3af", opacity: 0.6, cursor: "not-allowed", boxShadow: "none", border: "1px solid #e5e7eb" }
+      primary: { background: "#9ca3af", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
+      accent: { background: "#9ca3af", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
+      outline: { background: "transparent", border: "2px solid #9ca3af", color: "#9ca3af", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" },
+      form: { background: "#9ca3af", color: "#ffffff", opacity: 0.6, cursor: "not-allowed", boxShadow: "none" }
     }
-  }), [])
+  }), [shape])
 
   // Button style
   const buttonStyle: CSSProperties = {
-    ...configs.style[color],
-    ...(disabled ? configs.disabled[color] : {}),
+    ...configs.style[normalizedColor],
+    ...(disabled ? configs.disabled[normalizedColor] : {}),
     ...configs.size[size],
     ...style,
   }
@@ -92,34 +123,40 @@ const ColorButton: FC<ColorButtonProps> = ({
   // Hover handlers
   const handleMouseEnter = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) return
-    const hover = configs.hover[color]
-    e.currentTarget.style.background = hover.background
-    e.currentTarget.style.boxShadow = hover.boxShadow
+    const hover = configs.hover[normalizedColor]
+    const element = e.currentTarget
+    element.style.background = hover.background as string
+    element.style.boxShadow = hover.boxShadow as string
+    if (hover.color) element.style.color = hover.color as string
+    if (hover.transform) element.style.transform = hover.transform as string
     props.onMouseEnter?.(e)
-  }, [color, disabled, loading, configs.hover, props])
+  }, [normalizedColor, disabled, loading, configs.hover, props])
 
   const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) return
-    const normal = configs.style[color]
-    e.currentTarget.style.background = normal.background as string
-    e.currentTarget.style.boxShadow = normal.boxShadow as string
+    const normal = configs.style[normalizedColor]
+    const element = e.currentTarget
+    element.style.background = normal.background as string
+    element.style.boxShadow = normal.boxShadow as string
+    element.style.color = normal.color as string
+    element.style.transform = "none"
     props.onMouseLeave?.(e)
-  }, [color, disabled, loading, configs.style, props])
+  }, [normalizedColor, disabled, loading, configs.style, props])
 
   // Content với icons
   const content = (
-    <>
-      {leftIcon && <span className="mr-2">{leftIcon}</span>}
+    <span className="flex items-center justify-center gap-2">
+      {leftIcon && leftIcon}
       {children}
-      {rightIcon && <span className="ml-2">{rightIcon}</span>}
-    </>
+      {rightIcon && rightIcon}
+    </span>
   )
 
   return (
-    <ConfigProvider theme={{ token: { borderRadius: 50 } }}>
+    <ConfigProvider theme={{ token: { borderRadius: shape === "rounded" ? 50 : 8 } }}>
       <Button 
         {...props} 
-        type={type || (color === "third" ? "default" : "primary")}
+        type={type || (normalizedColor === "outline" ? "default" : "primary")}
         size={size === "small" ? "small" : size === "large" ? "large" : "middle"}
         className={`transition-all duration-300 ${disabled ? "cursor-not-allowed" : ""} ${className}`.trim()}
         style={buttonStyle}

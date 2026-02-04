@@ -66,29 +66,29 @@ const Navigation = () => {
 
           {/* Navigation Links - Desktop */}
           <div className="hidden lg:flex flex-1 justify-center">
-            <ul className="flex gap-6 items-center">
+            <ul className="flex gap-2 items-center">
               <li>
-                <Link to="/" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+                <Link to="/" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
                   {t('navigation.home')}
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+                <Link to="/about" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
                   {t('navigation.about')}
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+                <Link to="/services" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
                   {t('navigation.services')}
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+                <Link to="/news" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
                   {t('navigation.news')}
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+                <Link to="/contact" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
                   {t('navigation.contact')}
                 </Link>
               </li>
@@ -107,12 +107,12 @@ const Navigation = () => {
                   onKeyDown={handleSearchKeyDown}
                   placeholder="Tìm kiếm..."
                   autoFocus
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm w-64 transition-all"
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-sm w-64 transition-all"
                 />
                 <button
                   type="button"
                   onClick={toggleSearch}
-                  className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+                  className="p-2 text-gray-600 hover:text-accent transition-colors"
                   aria-label="Đóng tìm kiếm"
                 >
                   <FaTimes className="text-lg" />
@@ -121,7 +121,7 @@ const Navigation = () => {
             ) : (
               <button
                 onClick={toggleSearch}
-                className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors"
+                className="relative p-2 text-gray-600 hover:text-accent transition-colors"
                 aria-label="Mở tìm kiếm"
               >
                 <FaSearch className="text-xl" />
@@ -132,22 +132,10 @@ const Navigation = () => {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-2 py-1 text-xs font-semibold border border-gray-300 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors"
+              className="px-2 py-1 text-xs font-semibold border border-gray-300 rounded-full hover:border-accent hover:text-accent transition-colors"
             >
               {currentLang === 'vi' ? 'VI' : 'EN'}
             </button>
-
-            {/* Dashboard Link - Only show if authenticated */}
-            {isAuthenticated && (
-              <Link 
-                to="/dashboard" 
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                <FaUser className="text-base" />
-                <span>Dashboard</span>
-              </Link>
-            )}
-
             {/* Contact Button */}
             <Link to="/contact">
               <Button color="primary" size="large">
@@ -168,12 +156,12 @@ const Navigation = () => {
                   onKeyDown={handleSearchKeyDown}
                   placeholder="Tìm kiếm..."
                   autoFocus
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent outline-none text-sm"
                 />
                 <button
                   type="button"
                   onClick={toggleSearch}
-                  className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+                  className="p-2 text-gray-600 hover:text-accent transition-colors"
                   aria-label="Đóng tìm kiếm"
                 >
                   <FaTimes className="text-lg" />
@@ -182,7 +170,7 @@ const Navigation = () => {
             ) : (
               <button
                 onClick={toggleSearch}
-                className="relative p-2 text-gray-600 hover:text-blue-600 transition-colors"
+                className="relative p-2 text-gray-600 hover:text-accent transition-colors"
                 aria-label="Mở tìm kiếm"
               >
                 <FaSearch className="text-lg" />
@@ -193,7 +181,7 @@ const Navigation = () => {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-2 py-1 text-xs font-semibold border border-gray-300 rounded-full hover:border-blue-500 hover:text-blue-600 transition-colors"
+              className="px-2 py-1 text-xs font-semibold border border-gray-300 rounded-full hover:border-accent hover:text-accent transition-colors"
             >
               {currentLang === 'vi' ? 'VI' : 'EN'}
             </button>
@@ -201,7 +189,7 @@ const Navigation = () => {
             {/* Hamburger Menu Button */}
             <button
               onClick={toggleMenu}
-              className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+              className="p-2 text-gray-600 hover:text-accent transition-colors"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
@@ -216,7 +204,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/" 
-                  className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.home')}
@@ -225,7 +213,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/about" 
-                  className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.about')}
@@ -234,7 +222,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/services" 
-                  className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.services')}
@@ -243,7 +231,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/news" 
-                  className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.news')}
@@ -252,7 +240,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/contact" 
-                  className="block text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.contact')}
@@ -263,7 +251,7 @@ const Navigation = () => {
                 <li>
                   <Link 
                     to="/dashboard" 
-                    className="flex items-center gap-2 text-base text-gray-700 hover:text-blue-600 font-medium py-2"
+                    className="flex items-center gap-2 text-base text-gray-700 hover:text-accent font-medium py-2"
                     onClick={closeMenu}
                   >
                     <FaUser className="text-base" />
