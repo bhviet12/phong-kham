@@ -3,7 +3,9 @@ import { useSEO, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
 import PageHeader from '../components/PageHeader'
 
-const ServicesSection = lazy(() => import('../components/services/ServicesSection'))
+const ServicesHeaderSection = lazy(() => import('../components/services/ServicesHeaderSection'))
+const ServicesListSection = lazy(() => import('../components/services/ServicesListSection'))
+const CTASection = lazy(() => import('../components/services/CTASection'))
 
 const LoadingFallback = (
   <div className="py-16 lg:py-24">
@@ -36,7 +38,13 @@ const Services = () => {
       <PageHeader pageKey="services" />
 
       <Suspense fallback={LoadingFallback}>
-        <ServicesSection />
+        <ServicesHeaderSection />
+      </Suspense>
+      <Suspense fallback={LoadingFallback}>
+        <ServicesListSection />
+      </Suspense>
+      <Suspense fallback={LoadingFallback}>
+        <CTASection />
       </Suspense>
     </MainLayout>
   )

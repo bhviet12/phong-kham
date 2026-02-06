@@ -1,11 +1,9 @@
 import { useSEO, generateOrganizationSchema, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
 import PageHeader from '../components/PageHeader'
-import AboutIntroSection from '../components/about/AboutIntroSection'
-import ExperienceServicesSection from '../components/about/ExperienceServicesSection'
-import DoctorsSection from '../components/about/DoctorsSection'
-import AchievementsSection from '../components/about/AchievementsSection'
-import ReviewsSection from '../components/home/ReviewsSection'
+import AboutHeaderSection from '../components/about/AboutHeaderSection'
+import CoreValuesSection from '../components/about/CoreValuesSection'
+import DoctorsFacilitiesSection from '../components/about/DoctorsFacilitiesSection'
 
 const About = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
@@ -32,11 +30,9 @@ const About = () => {
     <MainLayout>
       <PageHeader pageKey="about" />
 
-      <AboutIntroSection />
-      <ExperienceServicesSection />
-      <DoctorsSection />
-      <AchievementsSection />
-      <ReviewsSection />
+      <AboutHeaderSection />
+      <CoreValuesSection />
+      <DoctorsFacilitiesSection />
 
     </MainLayout>
   )

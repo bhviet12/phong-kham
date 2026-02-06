@@ -1,6 +1,7 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import { useSEO, generateOrganizationSchema, generateFAQSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
+import BookingModal from '../components/BookingModal'
 
 // Lazy load components for better performance
 const ContactSection = lazy(() => import('../components/home/ContactSection'))
@@ -24,6 +25,16 @@ const LoadingFallback = () => (
 
 const Home = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+  const [showBookingModal, setShowBookingModal] = useState(false)
+
+  // Show booking modal after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBookingModal(true)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [])
   
   // FAQ data for structured data (matching FAQSection)
   const faqs = [
@@ -89,6 +100,12 @@ const Home = () => {
       {/* <Suspense fallback={<LoadingFallback />}>
         <NewsSection />
       </Suspense> */}
+      
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+      />
     </MainLayout>
   )
 }
