@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import Header from './Header'
 import Navigation from './Navigation'
-import Footer from '../components/Footer'
-import QuickClickPanel from '../components/QuickClickPanel'
+import Footer from '../components/shared/Footer'
+import QuickClickPanel from '../components/shared/QuickClickPanel'
 
 interface MainLayoutProps {
   children: ReactNode

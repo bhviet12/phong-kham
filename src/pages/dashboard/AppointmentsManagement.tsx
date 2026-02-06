@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
-import DataTable, { Column } from '../../components/dashboard/DataTable'
-import { Modal } from '../../components/dashboard/Modal'
+import DataTable, { Column } from '../../components/features/dashboard/DataTable'
+import { Modal } from '../../components/features/dashboard/Modal'
 import { FaCheck, FaTimes, FaEnvelope, FaSms } from 'react-icons/fa'
 import { useAuth } from '../../contexts/AuthContext'
 

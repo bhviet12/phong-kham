@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { useSEO, generateOrganizationSchema, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import Container from '../components/Container'
-import PageHeader from '../components/PageHeader'
+import Container from '../components/shared/Container'
 import { FaCalendarAlt, FaEnvelope, FaFacebookF, FaInstagram, FaPhoneAlt, FaTwitter } from 'react-icons/fa'
 import { FaClock, FaLocationDot } from 'react-icons/fa6'
 import { contactPageData } from '../data/pages/contactPage'
-import Button from '../components/Button'
+import Button from '../components/shared/Button'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -67,8 +66,6 @@ const Contact = () => {
 
   return (
     <MainLayout>
-      <PageHeader pageKey="contact" />
-
       {/* Luxury Contact / Booking */}
       <section className="py-14 lg:py-20 bg-background-soft">
         <Container>

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
-import Button from '../components/Button/index.tsx'
-import Container from '../components/Container'
+import Button from '../components/shared/Button/index.tsx'
+import Container from '../components/shared/Container'
 import logo from '../assets/static/TD logo_Artboard 4 copy.png'
 import { FaSearch, FaTimes, FaBars, FaUser } from 'react-icons/fa'
 
@@ -68,27 +68,27 @@ const Navigation = () => {
           <div className="hidden lg:flex flex-1 justify-center">
             <ul className="flex gap-2 items-center">
               <li>
-                <Link to="/" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
+                <Link to="/" className="nav-link text-sm text-gray-600 dark:text-gray-300 font-medium px-3 py-2">
                   {t('navigation.home')}
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
+                <Link to="/about" className="nav-link text-sm text-gray-600 dark:text-gray-300 font-medium px-3 py-2">
                   {t('navigation.about')}
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
+                <Link to="/services" className="nav-link text-sm text-gray-600 dark:text-gray-300 font-medium px-3 py-2">
                   {t('navigation.services')}
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
+                <Link to="/news" className="nav-link text-sm text-gray-600 dark:text-gray-300 font-medium px-3 py-2">
                   {t('navigation.news')}
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-sm text-gray-700 hover:text-accent hover:bg-accent/10 font-medium px-3 py-2 rounded-full transition-colors">
+                <Link to="/contact" className="nav-link text-sm text-gray-600 dark:text-gray-300 font-medium px-3 py-2">
                   {t('navigation.contact')}
                 </Link>
               </li>
@@ -204,7 +204,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/" 
-                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
+                  className="nav-link block text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.home')}
@@ -213,7 +213,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/about" 
-                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
+                  className="nav-link block text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.about')}
@@ -222,7 +222,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/services" 
-                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
+                  className="nav-link block text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.services')}
@@ -231,7 +231,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/news" 
-                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
+                  className="nav-link block text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.news')}
@@ -240,7 +240,7 @@ const Navigation = () => {
               <li>
                 <Link 
                   to="/contact" 
-                  className="block text-base text-gray-700 hover:text-accent font-medium py-2"
+                  className="nav-link block text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                   onClick={closeMenu}
                 >
                   {t('navigation.contact')}
@@ -251,7 +251,7 @@ const Navigation = () => {
                 <li>
                   <Link 
                     to="/dashboard" 
-                    className="flex items-center gap-2 text-base text-gray-700 hover:text-accent font-medium py-2"
+                    className="nav-link flex items-center gap-2 text-base text-gray-600 dark:text-gray-300 font-medium py-2"
                     onClick={closeMenu}
                   >
                     <FaUser className="text-base" />

@@ -109,3 +109,54 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Navigation Link Hover Effect - Luxury Gold Underline */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(to right, #b08d28, #f3cf7a, #b08d28);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+  border-radius: 2px;
+}
+
+.nav-link:hover {
+  color: #d4af37; /* Gold hover color */
+}
+
+.dark .nav-link:hover {
+  color: #f3cf7a; /* Lighter gold for dark mode */
+}
+
+.nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* CTA Section Button Styles */
+.cta-button {
+  background-color: #F3D586; /* Gold */
+  color: #0F2C59; /* Deep Navy */
+}
+
+.cta-button:hover {
+  background-color: #FFFFFF; /* White on hover */
+  color: #0F2C59; /* Deep Navy */
+}
+
+.cta-icon {
+  color: #0F2C59; /* Deep Navy */
+}
+
+.cta-button:hover .cta-icon {
+  color: #0F2C59; /* Deep Navy - stays same on hover */
+}

@@ -1,16 +1,47 @@
+/**
+ * 📄 FILE SEO UTILITIES (seo.tsx)
+ * 
+ * Mục đích: Quản lý SEO (Search Engine Optimization) cho website
+ * 
+ * Tác dụng chính:
+ * 1. Tự động cập nhật thẻ meta (title, description, keywords) cho mỗi trang
+ * 2. Thêm Open Graph tags để hiển thị đẹp khi share lên Facebook, Twitter, LinkedIn
+ * 3. Tạo structured data (JSON-LD) giúp Google hiểu nội dung trang tốt hơn
+ * 4. Thiết lập canonical URL để tránh duplicate content
+ * 
+ * Cách sử dụng:
+ * - Import và gọi useSEO() trong mỗi page component
+ * - Truyền vào các thông tin SEO cần thiết (title, description, etc.)
+ * - Hook sẽ tự động cập nhật <head> của HTML
+ */
+
 import { useEffect } from 'react'
 
+/**
+ * Interface định nghĩa các props cho useSEO hook
+ */
 interface SEOProps {
-  title?: string
-  description?: string
-  keywords?: string
-  ogImage?: string
-  ogUrl?: string
-  canonical?: string
-  type?: 'website' | 'article' | 'product' | 'localBusiness'
-  structuredData?: object | object[]
+  title?: string              // Tiêu đề trang (hiển thị trên tab browser)
+  description?: string        // Mô tả ngắn về trang (hiển thị trong kết quả tìm kiếm)
+  keywords?: string           // Từ khóa liên quan (giúp search engine index)
+  ogImage?: string            // Hình ảnh khi share lên mạng xã hội
+  ogUrl?: string              // URL khi share (Open Graph)
+  canonical?: string          // URL chính thức của trang (tránh duplicate)
+  type?: 'website' | 'article' | 'product' | 'localBusiness'  // Loại nội dung
+  structuredData?: object | object[]  // Dữ liệu có cấu trúc (JSON-LD) cho Google
 }
 
+/**
+ * Hook chính để quản lý SEO
+ * 
+ * Tự động cập nhật:
+ * - Document title (tab browser)
+ * - Meta tags (description, keywords)
+ * - Open Graph tags (Facebook, LinkedIn)
+ * - Twitter Card tags
+ * - Canonical URL
+ * - Structured Data (JSON-LD)
+ */
 export const useSEO = ({
   title = 'Medical - Phòng Khám Chất Lượng',
   description = 'Khám phá sức khỏe và trải nghiệm dịch vụ chất lượng cao tại Bệnh viện/Phòng khám của chúng tôi - nơi mang đến sự chăm sóc tận tâm và sự an tâm cho bạn và gia đình.',
@@ -22,10 +53,17 @@ export const useSEO = ({
   structuredData
 }: SEOProps) => {
   useEffect(() => {
-    // Update title
+    // ========== 1. CẬP NHẬT TITLE ==========
+    // Title hiển thị trên tab browser và trong kết quả tìm kiếm Google
     document.title = title
 
-    // Update or create meta tags
+    // ========== 2. HÀM HỖ TRỢ: CẬP NHẬT/CẬP NHẬT META TAGS ==========
+    /**
+     * Tìm hoặc tạo mới meta tag và cập nhật nội dung
+     * @param name - Tên của meta tag (vd: 'description', 'og:title')
+     * @param content - Nội dung của meta tag
+     * @param attribute - Loại attribute ('name' hoặc 'property' cho Open Graph)
+     */
     const updateMetaTag = (name: string, content: string, attribute: string = 'name') => {
       let element = document.querySelector(`meta[${attribute}="${name}"]`)
       if (!element) {
@@ -36,28 +74,34 @@ export const useSEO = ({
       element.setAttribute('content', content)
     }
 
-    // Basic meta tags
+    // ========== 3. META TAGS CƠ BẢN ==========
+    // Description: Hiển thị dưới title trong kết quả Google
     updateMetaTag('description', description)
+    // Keywords: Giúp search engine hiểu nội dung trang (ít quan trọng hơn trước)
     updateMetaTag('keywords', keywords)
 
-    // Open Graph tags
-    updateMetaTag('og:title', title, 'property')
-    updateMetaTag('og:description', description, 'property')
-    updateMetaTag('og:image', ogImage, 'property')
-    updateMetaTag('og:type', type, 'property')
+    // ========== 4. OPEN GRAPH TAGS (Facebook, LinkedIn) ==========
+    // Khi share link lên Facebook/LinkedIn, các tag này quyết định cách hiển thị
+    updateMetaTag('og:title', title, 'property')           // Tiêu đề khi share
+    updateMetaTag('og:description', description, 'property') // Mô tả khi share
+    updateMetaTag('og:image', ogImage, 'property')          // Hình ảnh preview
+    updateMetaTag('og:type', type, 'property')             // Loại nội dung
     if (ogUrl) {
-      updateMetaTag('og:url', ogUrl, 'property')
+      updateMetaTag('og:url', ogUrl, 'property')           // URL chính thức
     } else if (typeof window !== 'undefined') {
-      updateMetaTag('og:url', window.location.href, 'property')
+      updateMetaTag('og:url', window.location.href, 'property') // Dùng URL hiện tại nếu không có
     }
 
-    // Twitter Card
-    updateMetaTag('twitter:card', 'summary_large_image')
-    updateMetaTag('twitter:title', title)
-    updateMetaTag('twitter:description', description)
-    updateMetaTag('twitter:image', ogImage)
+    // ========== 5. TWITTER CARD TAGS ==========
+    // Tương tự Open Graph nhưng dành riêng cho Twitter
+    updateMetaTag('twitter:card', 'summary_large_image')   // Kiểu card: large image
+    updateMetaTag('twitter:title', title)                   // Tiêu đề trên Twitter
+    updateMetaTag('twitter:description', description)        // Mô tả trên Twitter
+    updateMetaTag('twitter:image', ogImage)                 // Hình ảnh trên Twitter
 
-    // Canonical URL
+    // ========== 6. CANONICAL URL ==========
+    // URL chính thức của trang, giúp Google biết đâu là bản gốc
+    // Tránh vấn đề duplicate content (nhiều URL trỏ đến cùng nội dung)
     if (canonical) {
       let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
       if (!link) {
@@ -76,35 +120,53 @@ export const useSEO = ({
       link.href = window.location.href
     }
 
-    // Structured Data (JSON-LD)
+    // ========== 7. STRUCTURED DATA (JSON-LD) ==========
+    // Dữ liệu có cấu trúc giúp Google hiểu rõ hơn về nội dung trang
+    // Ví dụ: Organization, BreadcrumbList, FAQPage, Product, etc.
+    // Google có thể hiển thị rich snippets (kết quả tìm kiếm đẹp hơn)
     if (structuredData) {
-      // Remove existing structured data scripts
+      // Xóa các structured data cũ (tránh duplicate)
       const existingScripts = document.querySelectorAll('script[type="application/ld+json"]')
       existingScripts.forEach(script => script.remove())
 
-      // Handle both single object and array of objects
+      // Hỗ trợ cả object đơn hoặc array of objects
       const dataArray = Array.isArray(structuredData) ? structuredData : [structuredData]
       
-      // Add structured data scripts
+      // Thêm structured data vào <head> dưới dạng JSON-LD
       dataArray.forEach((data, index) => {
         const script = document.createElement('script')
-        script.type = 'application/ld+json'
+        script.type = 'application/ld+json'  // Định dạng JSON-LD
         script.id = `structured-data-${index}`
-        script.text = JSON.stringify(data)
+        script.text = JSON.stringify(data)    // Chuyển object thành JSON string
         document.head.appendChild(script)
       })
     }
 
-    // Cleanup function
+    // ========== 8. CLEANUP FUNCTION ==========
+    // Dọn dẹp khi component unmount (chuyển trang)
     return () => {
-      // Cleanup structured data on unmount
+      // Xóa structured data khi component unmount
       const scripts = document.querySelectorAll('script[type="application/ld+json"]')
       scripts.forEach(script => script.remove())
     }
   }, [title, description, keywords, ogImage, ogUrl, canonical, type, structuredData])
 }
 
-// Helper function to generate Organization schema
+// ========== HELPER FUNCTIONS ==========
+
+/**
+ * Tạo Organization Schema (Schema.org)
+ * 
+ * Mục đích: Giúp Google hiểu thông tin về doanh nghiệp/phòng khám
+ * 
+ * Lợi ích:
+ * - Hiển thị rich snippet trong kết quả tìm kiếm (có logo, đánh giá, giờ mở cửa)
+ * - Google Knowledge Graph có thể hiển thị thông tin doanh nghiệp
+ * - Tăng độ tin cậy và CTR (click-through rate)
+ * 
+ * @param url - URL của website
+ * @returns Object chứa structured data theo chuẩn Schema.org
+ */
 export const generateOrganizationSchema = (url: string) => ({
   '@context': 'https://schema.org',
   '@type': 'MedicalBusiness',
@@ -120,7 +182,7 @@ export const generateOrganizationSchema = (url: string) => ({
   },
   telephone: '+84-xxx-xxx-xxx',
   priceRange: '$$',
-  medicalSpecialty: [
+  medicalSpecialty: [  // Các chuyên khoa y tế
     'General Practice',
     'Dentistry',
     'Cardiology',
@@ -128,7 +190,21 @@ export const generateOrganizationSchema = (url: string) => ({
   ]
 })
 
-// Helper function to generate BreadcrumbList schema
+/**
+ * Tạo BreadcrumbList Schema (Schema.org)
+ * 
+ * Mục đích: Hiển thị breadcrumb (đường dẫn) trong kết quả Google
+ * 
+ * Ví dụ: Trang chủ > Dịch vụ > Trị mụn
+ * 
+ * Lợi ích:
+ * - Người dùng dễ hiểu cấu trúc website
+ * - Tăng CTR vì breadcrumb hiển thị trong kết quả tìm kiếm
+ * - Giúp Google hiểu cấu trúc site tốt hơn
+ * 
+ * @param items - Mảng các item breadcrumb [{ name: 'Trang chủ', url: '/' }, ...]
+ * @returns Object chứa BreadcrumbList structured data
+ */
 export const generateBreadcrumbSchema = (items: Array<{ name: string; url: string }>) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -140,7 +216,28 @@ export const generateBreadcrumbSchema = (items: Array<{ name: string; url: strin
   }))
 })
 
-// Helper function to generate FAQPage schema
+/**
+ * Tạo FAQPage Schema (Schema.org)
+ * 
+ * Mục đích: Hiển thị FAQ dạng rich snippet trong Google
+ * 
+ * Lợi ích:
+ * - FAQ hiển thị trực tiếp trong kết quả tìm kiếm (không cần click vào)
+ * - Tăng khả năng hiển thị ở vị trí #0 (featured snippet)
+ * - Tăng CTR và giảm bounce rate
+ * 
+ * Ví dụ sử dụng:
+ * ```tsx
+ * const faqs = [
+ *   { question: 'Giờ mở cửa?', answer: '9:00 - 20:00 hàng ngày' },
+ *   { question: 'Có đặt lịch online không?', answer: 'Có, bạn có thể đặt lịch trên website' }
+ * ]
+ * useSEO({ structuredData: generateFAQSchema(faqs) })
+ * ```
+ * 
+ * @param faqs - Mảng các câu hỏi và câu trả lời
+ * @returns Object chứa FAQPage structured data
+ */
 export const generateFAQSchema = (faqs: Array<{ question: string; answer: string }>) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',

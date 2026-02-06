@@ -1,11 +1,10 @@
 import { Suspense, lazy } from 'react'
 import { useSEO, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import PageHeader from '../components/PageHeader'
+import CTASection from '../components/shared/CTASection'
 
-const ServicesHeaderSection = lazy(() => import('../components/services/ServicesHeaderSection'))
-const ServicesListSection = lazy(() => import('../components/services/ServicesListSection'))
-const CTASection = lazy(() => import('../components/services/CTASection'))
+const ServicesHeaderSection = lazy(() => import('../components/features/services/ServicesHeaderSection'))
+const ServicesListSection = lazy(() => import('../components/features/services/ServicesListSection'))
 
 const LoadingFallback = (
   <div className="py-16 lg:py-24">
@@ -35,17 +34,13 @@ const Services = () => {
 
   return (
     <MainLayout>
-      <PageHeader pageKey="services" />
-
       <Suspense fallback={LoadingFallback}>
         <ServicesHeaderSection />
       </Suspense>
       <Suspense fallback={LoadingFallback}>
         <ServicesListSection />
       </Suspense>
-      <Suspense fallback={LoadingFallback}>
-        <CTASection />
-      </Suspense>
+      <CTASection />
     </MainLayout>
   )
 }

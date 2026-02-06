@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
-import DataTable, { Column } from '../../components/dashboard/DataTable'
-import { Modal, DeleteDialog } from '../../components/dashboard/Modal'
+import DataTable, { Column } from '../../components/features/dashboard/DataTable'
+import { Modal, DeleteDialog } from '../../components/features/dashboard/Modal'
 
 interface Doctor {
   id: number

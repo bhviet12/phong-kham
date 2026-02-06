@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom'
 import { useSEO, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import ServiceHeroSection from '../components/service-detail/ServiceHeroSection'
-import ServiceIntroductionSection from '../components/service-detail/ServiceIntroductionSection'
-import ServiceBenefitsSection from '../components/service-detail/ServiceBenefitsSection'
-import ServiceProcedureSection from '../components/service-detail/ServiceProcedureSection'
-import ServiceInfoCTASection from '../components/service-detail/ServiceInfoCTASection'
+import ServiceHeroSection from '../components/features/service-detail/ServiceHeroSection'
+import ServiceIntroductionSection from '../components/features/service-detail/ServiceIntroductionSection'
+import ServiceBenefitsSection from '../components/features/service-detail/ServiceBenefitsSection'
+import ServiceProcedureSection from '../components/features/service-detail/ServiceProcedureSection'
+import ServiceInfoCTASection from '../components/features/service-detail/ServiceInfoCTASection'
 
 // Service data mapping
 const serviceDataMap: Record<string, {

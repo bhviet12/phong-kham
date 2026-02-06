@@ -1,20 +1,20 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
 import { useSEO, generateOrganizationSchema, generateFAQSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import BookingModal from '../components/BookingModal'
+import BookingModal from '../components/features/booking'
 
 // Lazy load components for better performance
-const ContactSection = lazy(() => import('../components/home/ContactSection'))
-const HeroBanner = lazy(() => import('../components/home/HeroBanner'))
-const AboutSection = lazy(() => import('../components/home/AboutSection'))
-const StatsSection = lazy(() => import('../components/home/StatsSection'))
-const ServicesSection = lazy(() => import('../components/home/ServicesSection'))
+const ContactSection = lazy(() => import('../components/features/home/ContactSection'))
+const HeroBanner = lazy(() => import('../components/features/home/HeroBanner'))
+const AboutSection = lazy(() => import('../components/features/home/AboutSection'))
+const StatsSection = lazy(() => import('../components/features/home/StatsSection'))
+const ServicesSection = lazy(() => import('../components/features/home/ServicesSection'))
 // Comment các section không dùng tạm thời
 // const HealthcareSection = lazy(() => import('../components/home/HealthcareSection'))
 // const DoctorsSection = lazy(() => import('../components/home/DoctorsSection'))
 // const WorkProcessSection = lazy(() => import('../components/home/WorkProcessSection'))
 // const FAQSection = lazy(() => import('../components/home/FAQSection'))
-const ReviewsSection = lazy(() => import('../components/home/ReviewsSection'))
+const ReviewsSection = lazy(() => import('../components/features/home/ReviewsSection'))
 // const NewsSection = lazy(() => import('../components/home/NewsSection'))
 
 const LoadingFallback = () => (

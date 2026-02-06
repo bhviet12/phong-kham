@@ -1,7 +1,7 @@
 import { FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa"
 import { MdOutlineEmail } from "react-icons/md"
 import { FaLocationDot } from "react-icons/fa6"
-import Container from "../../components/Container"
+import Container from "../../components/shared/Container"
 import "./index.css"
 
 const Header = () => {

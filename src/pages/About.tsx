@@ -1,9 +1,20 @@
+import { lazy, Suspense } from 'react'
 import { useSEO, generateOrganizationSchema, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import PageHeader from '../components/PageHeader'
-import AboutHeaderSection from '../components/about/AboutHeaderSection'
-import CoreValuesSection from '../components/about/CoreValuesSection'
-import DoctorsFacilitiesSection from '../components/about/DoctorsFacilitiesSection'
+import AboutHeaderSection from '../components/features/about/AboutHeaderSection'
+import CoreValuesSection from '../components/features/about/CoreValuesSection'
+import DoctorsFacilitiesSection from '../components/features/about/DoctorsFacilitiesSection'
+import CTASection from '../components/shared/CTASection'
+
+const ReviewsSection = lazy(() => import('../components/features/home/ReviewsSection'))
+
+const LoadingFallback = (
+  <div className="py-16 lg:py-24">
+    <div className="flex items-center justify-center min-h-[400px]">
+      <div className="text-gray-500">Đang tải...</div>
+    </div>
+  </div>
+)
 
 const About = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
@@ -28,12 +39,13 @@ const About = () => {
 
   return (
     <MainLayout>
-      <PageHeader pageKey="about" />
-
       <AboutHeaderSection />
       <CoreValuesSection />
       <DoctorsFacilitiesSection />
-
+      <CTASection />
+      <Suspense fallback={LoadingFallback}>
+        <ReviewsSection />
+      </Suspense>
     </MainLayout>
   )
 }

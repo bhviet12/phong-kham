@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import ProtectedRoute from './components/ProtectedRoute'
-import RoleProtectedRoute from './components/RoleProtectedRoute'
+import ProtectedRoute from './components/shared/ProtectedRoute'
+import RoleProtectedRoute from './components/shared/RoleProtectedRoute'
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'))

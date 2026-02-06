@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useSEO, generateOrganizationSchema, generateBreadcrumbSchema } from '../utils/seo'
 import MainLayout from '../Layouts/MainLayout'
-import Container from '../components/Container'
+import Container from '../components/shared/Container'
 import { FaCalendarAlt, FaChevronRight, FaComment, FaSearch, FaUser } from 'react-icons/fa'
 import { newsPageData } from '../data/pages/newsPage'
-import Button from '../components/Button'
+import Button from '../components/shared/Button'
 
 const News = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
